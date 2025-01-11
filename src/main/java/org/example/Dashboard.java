@@ -36,8 +36,8 @@ public class Dashboard extends LoadableComponent<Dashboard>{
         assertTrue(driver.getTitle().contains("Dashboard"));
     }
 
-    public void createRepo(){
+    public CreateRepositoryPage createRepo(){
         createRepoButton.click();
-
+        return new CreateRepositoryPage(driver);
     }
 }

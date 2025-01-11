@@ -26,6 +26,9 @@ public class CreateRepositoryPage extends LoadableComponent<CreateRepositoryPage
     @FindBy(name = "issue_labels")
     private WebElement issueLabelsList;
 
+    @FindBy(className = "primary")
+    private WebElement createRepoButton;
+
 
     public CreateRepositoryPage(WebDriver driver){
         this.driver = driver;
@@ -43,5 +46,16 @@ public class CreateRepositoryPage extends LoadableComponent<CreateRepositoryPage
     @Override
     protected void isLoaded() throws Error {
         assertTrue(driver.getTitle().contains("New Repository"));
+    }
+
+    public CreateRepositoryPage inValidRepoNameCreation(String repoName){
+        repoNameField.clear();
+        repoNameField.sendKeys(repoName);
+        createRepoButton.click();
+        return this;
+    }
+
+    public boolean failCreation(){
+        return driver.getTitle().contains("New Repository");
     }
 }

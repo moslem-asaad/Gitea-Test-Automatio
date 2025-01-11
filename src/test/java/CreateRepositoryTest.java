@@ -32,6 +32,21 @@ public class CreateRepositoryTest {
         dashboard.createRepo();
     }
 
+    @Test
+    public void testCreateRepoInvalidName() {
+        SignInPage signInPage = welcomePage.signIn();
+        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid("moslem","80517moslem");
+        assertTrue(dashboard.createRepo().inValidRepoNameCreation("@@invalid!!").failCreation());
+
+    }
+
+    @Test
+    public void testCreateRepoEmptyName() {
+        SignInPage signInPage = welcomePage.signIn();
+        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid("moslem","80517moslem");
+        assertTrue(dashboard.createRepo().inValidRepoNameCreation("").failCreation());
+    }
+
 
     @AfterEach
     public void tearDown() throws InterruptedException {
