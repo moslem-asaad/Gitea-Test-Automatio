@@ -1,8 +1,5 @@
 
-import org.example.Dashboard;
-import org.example.DriverFactory;
-import org.example.WelcomePage;
-import org.example.SignInPage;
+import org.example.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,6 +29,8 @@ public class CreateRepositoryTest {
         dashboard.createRepo();
     }
 
+    //TC1 -------------------------
+
     @Test
     public void testCreateRepoInvalidName() {
         SignInPage signInPage = welcomePage.signIn();
@@ -40,12 +39,57 @@ public class CreateRepositoryTest {
 
     }
 
+    //TC2----------------------------
+    @Test
+    public void testCreateRepoValidName() {
+        String repoName = "test_repo_" + System.currentTimeMillis(); //todo: use mock to not load the database?
+        SignInPage signInPage = welcomePage.signIn();
+        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid("moslem","80517moslem");
+        CreateRepositoryPage createRepositoryPage=  dashboard.createRepo();
+        createRepositoryPage.ValidRepoNameCreation(repoName);
+        assertFalse(createRepositoryPage.failCreation());
+    }
+
+    //TC3-----------------------------
+    @Test
+    public void testCreateRepoDublicateName() {
+        SignInPage signInPage = welcomePage.signIn();
+        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid("moslem","80517moslem");
+        assertTrue(dashboard.createRepo().inValidRepoNameCreation("testRepo").failCreation());
+    }
+
+    //TC4-----------------------------
     @Test
     public void testCreateRepoEmptyName() {
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid("moslem","80517moslem");
         assertTrue(dashboard.createRepo().inValidRepoNameCreation("").failCreation());
     }
+
+    //TC5-----------------------------
+    @Test
+    public void testCreateRepoWithGitIgnoreTemplateByIndex() {
+        SignInPage signInPage = welcomePage.signIn();
+        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid("moslem","80517moslem");
+        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+        createRepositoryPage.selectGitIgnoreTemplateByIndex(0);
+        //todo: add the create repo button and click
+        assertTrue(createRepositoryPage.failCreation());
+
+    }
+
+    @Test
+    public void testCreateRepoWithGitIgnoreTemplateByTapping() {
+        SignInPage signInPage = welcomePage.signIn();
+        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid("moslem","80517moslem");
+        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+        createRepositoryPage.selectGitIgnoreTemplateByTapping("a");
+        //todo: add the create repo button and click
+        assertTrue(createRepositoryPage.failCreation());
+
+    }
+
+
 
 
     @AfterEach
