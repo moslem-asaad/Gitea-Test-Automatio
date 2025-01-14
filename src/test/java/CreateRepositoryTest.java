@@ -46,8 +46,9 @@ public class CreateRepositoryTest {
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid("moslem","80517moslem");
         CreateRepositoryPage createRepositoryPage=  dashboard.createRepo();
-        createRepositoryPage.ValidRepoNameCreation(repoName);
-        assertFalse(createRepositoryPage.failCreation());
+        EmptyRepoPage repositoryPage = (EmptyRepoPage) createRepositoryPage.ValidRepoNameCreation(repoName);
+        assertTrue(repositoryPage.inRepoPage());
+        repositoryPage.clickIsues();
     }
 
     //TC3-----------------------------

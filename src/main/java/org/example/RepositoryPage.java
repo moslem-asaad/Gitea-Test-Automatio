@@ -11,13 +11,22 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class RepositoryPage extends LoadableComponent<RepositoryPage> {
+abstract public class RepositoryPage extends LoadableComponent<RepositoryPage> {
 
     private WebDriver driver;
     private final String baseURL = "http://localhost:3000";
 
     @FindBy(css = "a.muted")
     private List<WebElement> links;
+
+    @FindBy(css = ".resize-for-semibold[data-text='Code']")
+    private WebElement codeButton;
+
+    @FindBy(css = ".resize-for-semibold[data-text=\"Issues\"]")
+    protected WebElement issuesButton;
+    @FindBy(css = ".resize-for-semibold[data-text='Actions']")
+    private WebElement actionsButton;
+
 
 
 
@@ -41,6 +50,10 @@ public class RepositoryPage extends LoadableComponent<RepositoryPage> {
     }
 
     public boolean inRepoPage(){
-        return driver.getTitle().contains(links.get(2).getDomProperty("href"));
+        System.out.println(driver.getTitle());
+        System.out.println(links.get(1).getDomProperty("href"));
+        return (baseURL+"/"+driver.getTitle()).contains(links.get(1).getDomProperty("href"));
     }
+
+
 }

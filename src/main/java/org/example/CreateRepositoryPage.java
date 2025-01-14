@@ -85,7 +85,7 @@ public class CreateRepositoryPage extends LoadableComponent<CreateRepositoryPage
         repoNameField.clear();
         repoNameField.sendKeys(repoName);
         createRepoButton.click();
-        return new RepositoryPage(driver);
+        return new EmptyRepoPage(driver);
     }
 
     public void validName(String repoName){
@@ -234,7 +234,7 @@ public class CreateRepositoryPage extends LoadableComponent<CreateRepositoryPage
 
     public RepositoryPage createRepoSuccess(){
         createRepoButton.click();
-        return new RepositoryPage(driver);
+        return new EmptyRepoPage(driver);
     }
 
     public boolean failCreation(){
