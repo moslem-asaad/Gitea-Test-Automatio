@@ -56,6 +56,9 @@ public class SignInTest {
         if (password == null || password.isEmpty()){
             password = System.getenv("Password");
         }
+        if (password == null || password.isEmpty()){
+            password = "80517moslem";
+        }
     }
 
     @Test
