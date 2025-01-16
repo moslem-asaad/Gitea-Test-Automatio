@@ -9,6 +9,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
@@ -26,7 +28,7 @@ public class CreateRepositoryPage extends LoadableComponent<CreateRepositoryPage
     private WebElement visibilityField;
     @FindBy(id = "description")
     private WebElement descriptionField;
-    @FindBy(id = "repo_template")
+    @FindBy(id = "repo_template_search")
     private WebElement repoTemplateList;
     @FindBy(css = "input[aria-controls='_aria_auto_id_25']")
     private WebElement issueLabelsList;
@@ -54,6 +56,12 @@ public class CreateRepositoryPage extends LoadableComponent<CreateRepositoryPage
     @FindBy(className = "primary")
     private WebElement createRepoButton;
 
+    @FindBy(name = "webhooks")
+    private WebElement webHooksBox;
+    @FindBy(name = "avatar")
+    private WebElement avatarBox;
+
+
 
     public CreateRepositoryPage(WebDriver driver){
         this.driver = driver;
@@ -72,7 +80,6 @@ public class CreateRepositoryPage extends LoadableComponent<CreateRepositoryPage
     protected void isLoaded() throws Error {
         assertTrue(driver.getTitle().contains("New Repository"));
     }
-
 
     public CreateRepositoryPage inValidRepoNameCreation(String repoName){
         repoNameField.clear();
@@ -221,6 +228,19 @@ public class CreateRepositoryPage extends LoadableComponent<CreateRepositoryPage
         defaultBranchField.sendKeys(branchName);
     }
 
+    public void setWebHooksBox(){
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5), Duration.ofMillis(500));
+        wait.until(d -> webHooksBox.isDisplayed());
+        webHooksBox.click();
+    }
+
+    public void setAvatarBox(){
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5), Duration.ofMillis(500));
+        wait.until(d -> avatarBox.isDisplayed());
+        avatarBox.click();
+    }
+
+
     public void setTemplateTheRepo(){
         templateTheRepo.click();
     }
@@ -232,9 +252,14 @@ public class CreateRepositoryPage extends LoadableComponent<CreateRepositoryPage
         return false;
     }
 
-    public RepositoryPage createRepoSuccess(){
+    public EmptyRepoPage createEmptyRepoSuccess(){
         createRepoButton.click();
         return new EmptyRepoPage(driver);
+    }
+
+    public NoneEmoptyRepoPage createNoneEmptyRepoSuccess(){
+        createRepoButton.click();
+        return new NoneEmoptyRepoPage(driver);
     }
 
     public boolean failCreation(){

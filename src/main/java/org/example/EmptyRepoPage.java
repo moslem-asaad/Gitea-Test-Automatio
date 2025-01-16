@@ -13,7 +13,9 @@ public class EmptyRepoPage extends RepositoryPage{
         super(driver);
     }
 
-    public void clickIsues(){
-        this.issuesButton.click();
+    public NewFilePage clickNewFileButton(){
+        newFileButton.click();
+        return new NewFilePage(driver);
     }
+
 }

@@ -15,4 +15,16 @@ public class NoneEmoptyRepoPage extends RepositoryPage{
     public NoneEmoptyRepoPage(WebDriver driver) {
         super(driver);
     }
+
+    public NewFilePage clickNewFileButton(){
+        addFileButton.click();
+        newFileOption.click();
+        return new NewFilePage(driver);
+    }
+
+
+
+
+
+
 }

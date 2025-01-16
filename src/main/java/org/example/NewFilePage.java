@@ -1,15 +1,15 @@
 package org.example;
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.LoadableComponent;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Duration;
 import java.util.List;
@@ -28,7 +28,7 @@ public class NewFilePage extends LoadableComponent<NewFilePage> {
     @FindBy(className = "segment")
     private WebElement fileContentField;
 
-    @FindBy(id = "commit_summary")
+    @FindBy(name = "commit_summary")
     private WebElement commitSummary;
 
     @FindBy(name = "commit_message")
@@ -59,10 +59,10 @@ public class NewFilePage extends LoadableComponent<NewFilePage> {
 
     @Override
     protected void isLoaded() throws Error {
-
+        assertTrue(driver.getCurrentUrl().contains("new"));
     }
 
-    public boolean newFilePageSuccess(){
+    public boolean inNewFilePage(){
         return driver.getCurrentUrl().contains("new");
     }
 
@@ -102,14 +102,27 @@ public class NewFilePage extends LoadableComponent<NewFilePage> {
     }
 
     public void addNewBranchName(String branchName){
-        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5), Duration.ofMillis(500));
-        wait.until(d -> newBranchNameField.isDisplayed());
+//        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5), Duration.ofMillis(500));
+//        wait.until(d -> newBranchNameField.isDisplayed());
         newBranchNameField.clear();
         newBranchNameField.sendKeys(branchName);
     }
 
     public NoneEmoptyRepoPage clickCreateRepo(){
         commitButton.click();
+        return new NoneEmoptyRepoPage(driver);
+    }
+
+    public NoneEmoptyRepoPage clickCreateRepoEmptyContent(){
+        commitButton.click();
+        new Actions(driver).keyDown(Keys.TAB).keyDown(Keys.ENTER).perform();
+       /* WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        try{
+            Alert alert = wait.until(ExpectedConditions.alertIsPresent());
+            alert.accept();
+        }catch (TimeoutException ignored){
+
+        }*/
         return new NoneEmoptyRepoPage(driver);
     }
 
@@ -146,7 +159,7 @@ public class NewFilePage extends LoadableComponent<NewFilePage> {
     }
 
     private boolean isEmptyRepo(){
-        return commitOptions.size()>1;
+        return commitOptions.size()<=1;
     }
 
 

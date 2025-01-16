@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 abstract public class RepositoryPage extends LoadableComponent<RepositoryPage> {
 
-    private WebDriver driver;
+    protected WebDriver driver;
     private final String baseURL = "http://localhost:3000";
 
     @FindBy(css = "a.muted")
@@ -50,10 +50,21 @@ abstract public class RepositoryPage extends LoadableComponent<RepositoryPage> {
     }
 
     public boolean inRepoPage(){
+        if (links == null || links.size() == 0) return false;
         System.out.println(driver.getTitle());
-        System.out.println(links.get(1).getDomProperty("href"));
-        return (baseURL+"/"+driver.getTitle()).contains(links.get(1).getDomProperty("href"));
+        System.out.println(getRepositoryName(links.get(1).getDomProperty("href")));
+        return (driver.getTitle()).contains(getRepositoryName(links.get(1).getDomProperty("href")));
     }
+
+    public String getRepositoryName(String url) {
+        String[] parts = url.split("/");
+        if (parts.length >= 5) {
+            return parts[4];
+        } else {
+            throw new IllegalArgumentException("Invalid URL format: " + url);
+        }
+    }
+
 
 
 }
