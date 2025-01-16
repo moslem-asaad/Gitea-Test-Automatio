@@ -38,6 +38,7 @@ public class CreateRepositoryTest {
         readENV();
         driver = DriverFactory.getDriver();
         driver.manage().window().maximize();
+        driver.get("https://8591-5-29-126-14.ngrok-free.app");
         try {
             Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
