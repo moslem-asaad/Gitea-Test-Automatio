@@ -19,15 +19,14 @@ on:
         required: false
         type: boolean
 
-env:
-  GITEA_API_TOKEN: ${{ secrets.GITEA_API_TOKEN }}
-  PASSWORD: ${{ secrets.PASSWORD }}
-
 jobs:
   TestChrome_131_0:
     name: Test Chrome 131.0
     runs-on: ubuntu-latest
     if: ${{ github.event.inputs.chrome_131_0 == 'true' }}
+    env:
+      GITEA_API_TOKEN: ${{ secrets.GITEA_API_TOKEN }}
+      PASSWORD: ${{ secrets.PASSWORD }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -45,20 +44,20 @@ jobs:
 
       - name: Run Tests
         run: |
-          export BROWSER=chrome
-          export GRID_URL=${{ github.event.inputs.grid_url }}
-          export GITEA_API_TOKEN=${{ secrets.GITEA_API_TOKEN }}
-          export PASSWORD=${{ secrets.PASSWORD }}
-          
+          echo "Running tests with BROWSER=$BROWSER and GRID_URL=$GRID_URL"
           mvn test -Dtest=**/seleniumTests/*
           
           # Tear down grid if exists
           docker stop grid_container || true
+          docker rm grid_container || true
 
   TestFirefox_133_0:
     name: Test Firefox 133.0
     runs-on: ubuntu-latest
     if: ${{ github.event.inputs.firefox_133_0 == 'true' }}
+    env:
+      GITEA_API_TOKEN: ${{ secrets.GITEA_API_TOKEN }}
+      PASSWORD: ${{ secrets.PASSWORD }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -76,12 +75,9 @@ jobs:
 
       - name: Run Tests
         run: |
-          export BROWSER=firefox
-          export GRID_URL=${{ github.event.inputs.grid_url }}
-          export GITEA_API_TOKEN=${{ secrets.GITEA_API_TOKEN }}
-          export PASSWORD=${{ secrets.PASSWORD }}
-          
+          echo "Running tests with BROWSER=$BROWSER and GRID_URL=$GRID_URL"
           mvn test -Dtest=**/seleniumTests/*
           
           # Tear down grid if exists
           docker stop grid_container || true
+          docker rm grid_container || true
