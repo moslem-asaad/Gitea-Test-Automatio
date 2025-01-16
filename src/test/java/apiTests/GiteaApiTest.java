@@ -1,3 +1,5 @@
+package apiTests;
+
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.example.EnvLoader;
@@ -26,7 +28,6 @@ public class GiteaApiTest {
 
         if (apiToken == null || apiToken.isEmpty()) {
             System.err.println("GITEA_API_TOKEN is not set in the environment variables.");
-            return;
         }
 
     }

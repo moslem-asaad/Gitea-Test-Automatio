@@ -1,15 +1,24 @@
+package seleniumTests;
 
 import org.example.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.time.Duration;
 
 public class CreateRepositoryTest {
 
@@ -29,7 +38,15 @@ public class CreateRepositoryTest {
         readENV();
         driver = DriverFactory.getDriver();
         driver.manage().window().maximize();
+        try {
+            Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
+            visitSiteButton.click();
+        } catch (TimeoutException err) {
+            System.out.println("Ngrok warning page was not loaded");
+        }
         welcomePage = new WelcomePage(driver).get();
+
         repositoryName = "test_repo_" + System.currentTimeMillis();
     }
 

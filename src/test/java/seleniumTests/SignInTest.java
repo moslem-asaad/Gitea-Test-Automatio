@@ -1,3 +1,5 @@
+package seleniumTests;
+
 import org.example.DriverFactory;
 import org.example.EnvLoader;
 import org.example.WelcomePage;
@@ -5,7 +7,16 @@ import org.example.SignInPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -25,7 +36,15 @@ public class SignInTest {
         readENV();
         driver = DriverFactory.getDriver();
         driver.manage().window().maximize();
+        try {
+            Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
+            visitSiteButton.click();
+        } catch (TimeoutException err) {
+            System.out.println("Ngrok warning page was not loaded");
+        }
         welcomePage = new WelcomePage(driver).get();
+
     }
 
     private void readENV(){
