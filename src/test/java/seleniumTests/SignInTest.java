@@ -33,6 +33,7 @@ public class SignInTest {
 
     @BeforeEach
     public void setUp(){
+        System.out.println("in set up sign in tests");
         readENV();
         driver = DriverFactory.getDriver();
         driver.manage().window().maximize();
@@ -44,6 +45,7 @@ public class SignInTest {
         } catch (TimeoutException err) {
             System.out.println("Ngrok warning page was not loaded");
         }
+        System.out.println("before init welcome page");
         welcomePage = new WelcomePage(driver).get();
 
     }
