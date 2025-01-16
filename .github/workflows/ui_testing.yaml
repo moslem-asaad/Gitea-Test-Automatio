@@ -68,7 +68,7 @@ jobs:
           export BROWSER=chrome
           export GRID_URL=${{ github.event.inputs.grid_url }}
           echo "Running tests with BROWSER=$BROWSER and GRID_URL=$GRID_URL and GITEA_API_TOKEN=$GITEA_API_TOKEN"
-          
+          ls -a
           mvn -q test -Dtest=**/seleniumTests/*
           
           # Tear down grid if exists
@@ -120,7 +120,7 @@ jobs:
         run: |
           export BROWSER=firefox
           export GRID_URL=${{ github.event.inputs.grid_url }}
-          
+          ls -a
           echo "Running tests with BROWSER=$BROWSER and GRID_URL=$GRID_URL and GITEA_API_TOKEN=$GITEA_API_TOKEN"
           
           mvn -q test -Dtest=**/seleniumTests/*
