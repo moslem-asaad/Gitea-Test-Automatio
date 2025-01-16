@@ -8,38 +8,43 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Optional;
 
 public class DriverFactory {
 
-    public static WebDriver getDriver() throws MalformedURLException {
-        String browser = System.getenv("BROWSER");
-        if (browser == null) browser = "chrome";
-        String remote = System.getenv("REMOTE");
-        if (remote == null) remote = "false";
+    private static final String grid_url = System.getenv("GRID_URL");
 
-//        if (browser == null) {
-//            throw new IllegalArgumentException("BROWSER environment variable must be set.");
-//        }
+    private static final String browser = Optional
+            .ofNullable(System.getenv("BROWSER"))
+            .orElse("chrome");
 
-        if ("true".equalsIgnoreCase(remote)) {
+    public static WebDriver getDriver() {
+        if (grid_url != null) {
             return getRemoteDriver(browser);
         } else {
             return getLocalDriver(browser);
         }
     }
 
-    private static WebDriver getRemoteDriver(String browser) throws MalformedURLException {
-        String hubUrl = "http://16.171.132.126:4444";
+    private static WebDriver getRemoteDriver(String browser) {
+        URL hubUrl;
+        try {
+            hubUrl = new URI(grid_url).toURL();
+        } catch (URISyntaxException | MalformedURLException err) {
+            throw new IllegalArgumentException("Invalid grid URL");
+        }
 
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--headless");
-            return new RemoteWebDriver(new URL(hubUrl), options);
+            return new RemoteWebDriver(hubUrl, options);
         } else if (browser.equalsIgnoreCase("firefox")) {
             FirefoxOptions options = new FirefoxOptions();
             options.addArguments("-headless");
-            return new RemoteWebDriver(new URL(hubUrl), options);
+            return new RemoteWebDriver(hubUrl, options);
         } else {
             throw new IllegalArgumentException("Unsupported browser: " + browser);
         }
