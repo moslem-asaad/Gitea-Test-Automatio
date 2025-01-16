@@ -41,6 +41,11 @@ jobs:
         run: |
           docker run --name grid_container -d -p 4444:4444 --shm-size=2gb selenium/standalone-chrome:131.0-chromedriver-131.0-grid-4.27.0-20250101
 
+      - name: define secrets
+        run: |
+          echo "GITEA_API_TOKEN=${{ secrets.GITEA_TOKEN }}" > .env
+          echo "Password=${{ secrets.Password }}" > .env 
+
       - name: Run Tests
         run: |
           export BROWSER=chrome
@@ -73,12 +78,16 @@ jobs:
         run: |
           docker run --name grid_container -d -p 4444:4444 --shm-size=2gb selenium/standalone-firefox:133.0-geckodriver-0.35-grid-4.27.0-20250101
 
+      - name: define secrets
+        run: |
+          echo "GITEA_API_TOKEN=${{ secrets.GITEA_TOKEN }}" > .env
+          echo "Password=${{ secrets.Password }}" > .env 
+
       - name: Run Tests
         run: |
           export BROWSER=firefox
           export GRID_URL=${{ github.event.inputs.grid_url }}
-          echo "GITEA_API_TOKEN=${{ secrets.GITEA_TOKEN }}" > .env
-          echo "Password=${{ secrets.Password }}" > .env 
+          
           echo "Running tests with BROWSER=$BROWSER and GRID_URL=$GRID_URL and GITEA_API_TOKEN=$GITEA_API_TOKEN"
           
           mvn -q test -Dtest=**/seleniumTests/*
