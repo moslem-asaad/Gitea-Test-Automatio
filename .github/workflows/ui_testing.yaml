@@ -43,8 +43,8 @@ jobs:
 
       - name: define secrets
         run: |
-          echo "GITEA_API_TOKEN=${{ secrets.GITEA_TOKEN }}" > .env
-          echo "Password=${{ secrets.Password }}" >> .env
+          echo "Password=${{ secrets.Password }}" > .env
+          echo "GITEA_API_TOKEN=${{ secrets.GITEA_TOKEN }}" >> .env
 
       - name: Load Environment Variables
         run: |
@@ -67,8 +67,6 @@ jobs:
         run: |
           export BROWSER=chrome
           export GRID_URL=${{ github.event.inputs.grid_url }}
-          echo "GITEA_API_TOKEN=${{ secrets.GITEA_TOKEN }}" > .env
-          echo "Password=${{ secrets.Password }}" > .env          
           echo "Running tests with BROWSER=$BROWSER and GRID_URL=$GRID_URL and GITEA_API_TOKEN=$GITEA_API_TOKEN"
           
           mvn -q test -Dtest=**/seleniumTests/*
@@ -97,8 +95,9 @@ jobs:
 
       - name: define secrets
         run: |
-          echo "GITEA_API_TOKEN=${{ secrets.GITEA_TOKEN }}" > .env
-          echo "Password=${{ secrets.Password }}" >> .env
+          echo "Password=${{ secrets.Password }}" > .env
+          echo "GITEA_API_TOKEN=${{ secrets.GITEA_TOKEN }}" >> .env
+          
 
       - name: Load Environment Variables
         run: |
