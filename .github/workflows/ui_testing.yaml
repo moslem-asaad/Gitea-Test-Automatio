@@ -44,7 +44,7 @@ jobs:
       - name: define secrets
         run: |
           echo "GITEA_API_TOKEN=${{ secrets.GITEA_TOKEN }}" > .env
-          echo "Password=${{ secrets.Password }}" > .env 
+          echo "Password=${{ secrets.Password }}" >> .env
 
       - name: Run Tests
         run: |
@@ -81,7 +81,7 @@ jobs:
       - name: define secrets
         run: |
           echo "GITEA_API_TOKEN=${{ secrets.GITEA_TOKEN }}" > .env
-          echo "Password=${{ secrets.Password }}" > .env 
+          echo "Password=${{ secrets.Password }}" >> .env
 
       - name: Run Tests
         run: |
