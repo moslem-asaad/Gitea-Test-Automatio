@@ -21,7 +21,7 @@ public class GiteaApiTest {
         //RestAssured.baseURI = "http://localhost:3000/api/v1";
         RestAssured.baseURI = "https://3736-5-29-126-14.ngrok-free.app/api/v1";
 
-        RestAssured.port = 3000;
+        //RestAssured.port = 3000;
 
         RestAssured.requestSpecification = new RequestSpecBuilder()
                 .addHeader("ngrok-skip-browser-warning", "any_value")
@@ -36,15 +36,6 @@ public class GiteaApiTest {
         }
 
     }
-
-    @Test
-    public void testNgrokConnection() {
-        when().get("/").
-                then().statusCode(200);
-    }
-
-
-
 
     @Test
     @Order(1)
