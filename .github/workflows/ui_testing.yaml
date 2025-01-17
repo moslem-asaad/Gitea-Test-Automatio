@@ -56,9 +56,9 @@ jobs:
       #     echo "Password=${{ secrets.USER_PASS }}" > .env
       #     echo "GITEA_API_TOKEN=${{ secrets.GITEA_API_TOKEN }}" >> .env
 
-      - name: Load Environment Variables
-        run: |
-          export $(cat .env | xargs)
+      # - name: Load Environment Variables
+      #   run: |
+      #     export $(cat .env | xargs)
 
       - name: Wait for Selenium Grid
         run: sleep 10
@@ -66,12 +66,12 @@ jobs:
       - name: Check Selenium Grid Status
         run: curl -s http://localhost:4444/status | jq .
 
-      - name: Debug Environment
-        run: |
-          echo "Contents of .env:"
-          cat .env
-          echo "Environment variables:"
-          env
+      # - name: Debug Environment
+      #   run: |
+      #     echo "Contents of .env:"
+      #     cat .env
+      #     echo "Environment variables:"
+      #     env
 
       - name: Run Tests
         run: |
