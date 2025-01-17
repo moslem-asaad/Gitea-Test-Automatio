@@ -14,13 +14,11 @@ public class GiteaApiTest {
     private final String owner = "moslem";
     private static String apiToken;
 
-    //echo "GITEA_TOKEN=...." > .env
-    //echo "GITEA_TOKEN=${{ secrets.GITEA_TOKEN }}" > .env
 
     @BeforeAll
     public static void setup() {
         //RestAssured.baseURI = "http://localhost:3000/api/v1";
-        RestAssured.baseURI = "https://8591-5-29-126-14.ngrok-free.app/api/v1";
+        RestAssured.baseURI = "https://3736-5-29-126-14.ngrok-free.app/api/v1";
 
         RestAssured.port = 3000;
         EnvLoader.loadEnv(".env");
