@@ -51,11 +51,11 @@ public class SignInTest {
     }
 
     private void readENV(){
-        EnvLoader.loadEnv(".env");
-        password = EnvLoader.getEnv("Password");
-        if (password == null || password.isEmpty()){
+//        EnvLoader.loadEnv(".env");
+//        password = EnvLoader.getEnv("Password");
+//        if (password == null || password.isEmpty()){
             password = System.getenv("Password");
-        } //
+        //} //
     }
 
     @Test

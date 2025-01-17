@@ -60,11 +60,11 @@ jobs:
       #   run: |
       #     export $(cat .env | xargs)
 
-      - name: Wait for Selenium Grid
-        run: sleep 10
-
-      - name: Check Selenium Grid Status
-        run: curl -s http://localhost:4444/status | jq .
+#      - name: Wait for Selenium Grid
+#        run: sleep 10
+#
+#      - name: Check Selenium Grid Status
+#        run: curl -s http://localhost:4444/status | jq .
 
       # - name: Debug Environment
       #   run: |
@@ -74,13 +74,13 @@ jobs:
       #     env
 
       - name: Run Tests
+        env:
+          GITEA_API_TOKEN: ${{ secrets.GITEA_API_TOKEN }}
+          Password: ${{ secrets.USER_PASS }}
         run: |
           export BROWSER=chrome
           export GRID_URL=${{ github.event.inputs.grid_url }}
-          export GITEA_API_TOKEN=${{ github.event.inputs.gitea_token }}
-          export Password=${{ github.event.inputs.user_password }}
-          echo "Running tests with BROWSER=$BROWSER and GRID_URL=$GRID_URL and GITEA_API_TOKEN=$GITEA_API_TOKEN"
-          ls -a
+          
           mvn -q test -Dtest=**/seleniumTests/*
           
           # Tear down grid if exists
@@ -105,35 +105,36 @@ jobs:
         run: |
           docker run --name grid_container -d -p 4444:4444 --shm-size=2gb selenium/standalone-firefox:133.0-geckodriver-0.35-grid-4.27.0-20250101
 
-      - name: define secrets
-        run: |
-          echo "Password=${{ secrets.USER_PASS }}" > .env
-          echo "GITEA_API_TOKEN=${{ secrets.GITEA_API_TOKEN }}" >> .env
-          
-
-      - name: Load Environment Variables
-        run: |
-          export $(cat .env | xargs)
-
-      - name: Wait for Selenium Grid
-        run: sleep 10
-
-      - name: Check Selenium Grid Status
-        run: curl -s http://localhost:4444/status | jq .
-
-      - name: Debug Environment
-        run: |
-          echo "Contents of .env:"
-          cat .env
-          echo "Environment variables:"
-          env
+#      - name: define secrets
+#        run: |
+#          echo "Password=${{ secrets.USER_PASS }}" > .env
+#          echo "GITEA_API_TOKEN=${{ secrets.GITEA_API_TOKEN }}" >> .env
+#
+#
+#      - name: Load Environment Variables
+#        run: |
+#          export $(cat .env | xargs)
+#
+#      - name: Wait for Selenium Grid
+#        run: sleep 10
+#
+#      - name: Check Selenium Grid Status
+#        run: curl -s http://localhost:4444/status | jq .
+#
+#      - name: Debug Environment
+#        run: |
+#          echo "Contents of .env:"
+#          cat .env
+#          echo "Environment variables:"
+#          env
 
       - name: Run Tests
+        env:
+          GITEA_API_TOKEN: ${{ secrets.GITEA_API_TOKEN }}
+          Password: ${{ secrets.USER_PASS }}
         run: |
           export BROWSER=firefox
           export GRID_URL=${{ github.event.inputs.grid_url }}
-          ls -a
-          echo "Running tests with BROWSER=$BROWSER and GRID_URL=$GRID_URL and GITEA_API_TOKEN=$GITEA_API_TOKEN"
           
           mvn -q test -Dtest=**/seleniumTests/*
           

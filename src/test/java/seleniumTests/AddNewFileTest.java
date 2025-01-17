@@ -57,12 +57,16 @@ public class AddNewFileTest {
     }
 
     private void readENV(){
-        EnvLoader.loadEnv(".env");
-        apiToken =  EnvLoader.getEnv("GITEA_API_TOKEN");
-        password = EnvLoader.getEnv("Password");
-        if (password == null || password.isEmpty()){
-            password = System.getenv("Password");
-        }
+        apiToken = System.getenv("GITEA_API_TOKEN");
+        password = System.getenv("Password");
+//        EnvLoader.loadEnv(".env");
+//
+//        apiToken =  EnvLoader.getEnv("GITEA_API_TOKEN");
+//        password = EnvLoader.getEnv("Password");
+//        if (password == null || password.isEmpty()){
+//            password = System.getenv("Password");
+//        }
+
     }
 
     @Test
