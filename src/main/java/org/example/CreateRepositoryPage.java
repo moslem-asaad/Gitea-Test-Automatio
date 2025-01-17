@@ -125,6 +125,7 @@ public class CreateRepositoryPage extends LoadableComponent<CreateRepositoryPage
 
     public void selectTemplateByIndex(int index){
         repoTemplateList.click();
+        this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         List<WebElement> options = repoTemplateList.findElements(By.cssSelector(".menu .item"));
         if(index>= options.size() || index<0) throw new IllegalArgumentException("Illegal index" + index);
         options.get(index).click();
