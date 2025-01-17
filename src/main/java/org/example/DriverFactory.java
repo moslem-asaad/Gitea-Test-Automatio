@@ -40,7 +40,7 @@ public class DriverFactory {
 
         if (browser.equalsIgnoreCase("chrome")) {
             ChromeOptions options = new ChromeOptions();
-            //options.addArguments("--headless");
+            options.addArguments("--headless");
             return new RemoteWebDriver(hubUrl, options);
         } else if (browser.equalsIgnoreCase("firefox")) {
             FirefoxOptions options = new FirefoxOptions();
