@@ -31,6 +31,10 @@ jobs:
           echo "Environment variables:"
           env
 
+      - name: Debug API Connectivity
+        run: |
+          curl -v https://3736-5-29-126-14.ngrok-free.app/api/v1/status || true
+
       - name: Run API Tests
         run: |
           mvn -q test -Dtest=**/apiTests/*

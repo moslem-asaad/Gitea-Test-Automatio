@@ -23,9 +23,9 @@ public class GiteaApiTest {
 
         //RestAssured.port = 3000;
 
-        RestAssured.requestSpecification = new RequestSpecBuilder()
-                .addHeader("ngrok-skip-browser-warning", "true")
-                .build();
+//        RestAssured.requestSpecification = new RequestSpecBuilder()
+//                .addHeader("ngrok-skip-browser-warning", "true")
+//                .build();
         EnvLoader.loadEnv(".env");
         apiToken =  EnvLoader.getEnv("GITEA_API_TOKEN");
         if (apiToken == null || apiToken.isEmpty())
@@ -41,6 +41,7 @@ public class GiteaApiTest {
     @Order(1)
     public void testCreateRepository() {
         given().
+                header("ngrok-skip-browser-warning", "true").
                 header("Authorization", "token " + apiToken).
                 contentType(ContentType.JSON).
                 body("{ \"name\": \"newRepo\", \"private\": false }").
@@ -57,6 +58,7 @@ public class GiteaApiTest {
     public void testGetRepositoryDetails() {
         String repo = "testRepo";
         given().
+                header("ngrok-skip-browser-warning", "true").
                 header("Authorization", "token " + apiToken).
                 contentType(ContentType.JSON).
                 pathParam("owner", owner).
@@ -73,6 +75,7 @@ public class GiteaApiTest {
     @Order(3)
     public void testCreateRepositoryExistingName() {
         given().
+                header("ngrok-skip-browser-warning", "true").
                 header("Authorization", "token " + apiToken).
                 contentType(ContentType.JSON).
                 body("{ \"name\": \"newRepo\", \"private\": false }").
@@ -89,6 +92,7 @@ public class GiteaApiTest {
         String repo = "newRepo";
 
         given().
+                header("ngrok-skip-browser-warning", "true").
                 header("Authorization", "token " + apiToken).
                 pathParam("owner", owner).
                 pathParam("repo", repo).
