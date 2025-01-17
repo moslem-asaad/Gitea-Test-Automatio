@@ -24,7 +24,7 @@ public class GiteaApiTest {
         //RestAssured.port = 3000;
 
         RestAssured.requestSpecification = new RequestSpecBuilder()
-                .addHeader("ngrok-skip-browser-warning", "any_value")
+                .addHeader("ngrok-skip-browser-warning", "true")
                 .build();
         EnvLoader.loadEnv(".env");
         apiToken =  EnvLoader.getEnv("GITEA_API_TOKEN");
