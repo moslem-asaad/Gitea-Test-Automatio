@@ -33,7 +33,7 @@ jobs:
 
       - name: Debug API Connectivity
         run: |
-          curl -v -H "Authorization: token ${{ secrets.GITEA_API_TOKEN }}" https://3736-5-29-126-14.ngrok-free.app/api/v1/user/repos || true
+          curl -v -H "Authorization: token ${{ secrets.GITEA_API_TOKEN }}" https://daa5-5-29-126-14.ngrok-free.app/api/v1/user/repos || true
 
       - name: Run API Tests
         run: |
