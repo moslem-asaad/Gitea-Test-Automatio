@@ -25,4 +25,4 @@ jobs:
         env:
           GITEA_API_TOKEN: ${{ secrets.GITEA_API_TOKEN }}
         run: |
-          mvn -q test -Dtest=**/apiTests/*
+          mvn -X test -Dtest=**/apiTests/*
