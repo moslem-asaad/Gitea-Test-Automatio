@@ -33,7 +33,7 @@ jobs:
 
       - name: Debug API Connectivity
         run: |
-          curl -v https://3736-5-29-126-14.ngrok-free.app/api/v1/status || true
+          curl -v https://3736-5-29-126-14.ngrok-free.app/api/v1/user/repos || true
 
       - name: Run API Tests
         run: |
