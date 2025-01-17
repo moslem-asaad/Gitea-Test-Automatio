@@ -1,6 +1,7 @@
 package apiTests;
 
 import io.restassured.RestAssured;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import org.example.EnvLoader;
 import org.junit.jupiter.api.*;
@@ -21,6 +22,10 @@ public class GiteaApiTest {
         RestAssured.baseURI = "https://3736-5-29-126-14.ngrok-free.app/api/v1";
 
         RestAssured.port = 3000;
+
+        RestAssured.requestSpecification = new RequestSpecBuilder()
+                .addHeader("ngrok-skip-browser-warning", "any_value")
+                .build();
         EnvLoader.loadEnv(".env");
         apiToken =  EnvLoader.getEnv("GITEA_API_TOKEN");
         if (apiToken == null || apiToken.isEmpty())
@@ -31,6 +36,13 @@ public class GiteaApiTest {
         }
 
     }
+
+    @Test
+    public void testNgrokConnection() {
+        when().get("/").
+                then().statusCode(200);
+    }
+
 
 
 
