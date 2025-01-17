@@ -60,17 +60,20 @@ public class SignInTest {
 
     @Test
     public void testAccessToSignInSuccess() {
+        System.out.println("test - sign in page access success");
         SignInPage signInPage = welcomePage.signIn();
     }
 
     @Test
     public void testInvalidSignInExistUserName() {
+        System.out.println("test - Invalid sign in username");
         SignInPage signInPage = welcomePage.signIn();
         assertTrue(signInPage.SignInDoNotRememberDeviceInValid("unexist","password").failedLogIn());
     }
 
     @Test
     public void testInvalidSignEmptyUserName() {
+        System.out.println("test - Invalid sign in empty username");
         SignInPage signInPage = welcomePage.signIn();
 
         assertTrue(signInPage.SignInDoNotRememberDeviceInValid("","password").failedLogIn());
@@ -79,24 +82,28 @@ public class SignInTest {
 
     @Test
     public void testInvalidSignInExistEmail() {
+        System.out.println("test - Invalid sign in email");
         SignInPage signInPage = welcomePage.signIn();
         assertTrue(signInPage.SignInDoNotRememberDeviceInValid("abc@gmail.com","password").failedLogIn());
     }
 
     @Test
     public void testInvalidSignInWrongPassword() {
+        System.out.println("test - Invalid sign in wrong password");
         SignInPage signInPage = welcomePage.signIn();
         assertTrue(signInPage.SignInDoNotRememberDeviceInValid(userName,"password").failedLogIn());
     }
 
     @Test
     public void testInvalidSignInEmptyPassword() {
+        System.out.println("test - Invalid sign in empty password");
         SignInPage signInPage = welcomePage.signIn();
         assertTrue(signInPage.SignInDoNotRememberDeviceInValid(userName,"").failedLogIn());
     }
 
     @Test
     public void testSignInSuccess() {
+        System.out.println("test -  sign in success");
         SignInPage signInPage = welcomePage.signIn();
         signInPage.SignInDoNotRememberDeviceValid(userName,password);
         assertFalse(signInPage.failedLogIn());
@@ -104,6 +111,7 @@ public class SignInTest {
 
     @Test
     public void testSignInSuccess2() {
+        System.out.println("test - sign in success2");
         SignInPage signInPage = welcomePage.signIn();
         signInPage.SignInDoNotRememberDeviceValid("asaadmoslem2000@gmail.com",password);
         assertFalse(signInPage.failedLogIn());

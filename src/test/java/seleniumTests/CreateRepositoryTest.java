@@ -66,6 +66,7 @@ public class CreateRepositoryTest {
 
     @Test
     public void createRepoAccess() {
+        System.out.println("test - create repo access ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         dashboard.createRepo();
@@ -75,6 +76,7 @@ public class CreateRepositoryTest {
 
     @Test
     public void invalidName() {
+        System.out.println("test - create repo invalid name ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         assertTrue(dashboard.createRepo().inValidRepoNameCreation("@@invalid!!").failCreation());
@@ -84,6 +86,7 @@ public class CreateRepositoryTest {
     //TC2----------------------------
     @Test
     public void validName() {
+        System.out.println("test - create repo valid name ");
         String repoName = repositoryName;
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
@@ -95,6 +98,7 @@ public class CreateRepositoryTest {
     //TC3-----------------------------
     @Test
     public void duplicateName() {
+        System.out.println("test - create repo duplicate name ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         assertTrue(dashboard.createRepo().inValidRepoNameCreation("testRepo").failCreation());
@@ -103,6 +107,7 @@ public class CreateRepositoryTest {
     //TC4-----------------------------
     @Test
     public void emptyName() {
+        System.out.println("test - create repo empty name ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         assertTrue(dashboard.createRepo().inValidRepoNameCreation("").failCreation());
@@ -111,6 +116,7 @@ public class CreateRepositoryTest {
     //TC5-----------------------------
     @Test
     public void gitIgnoreByIndex() {
+        System.out.println("test - create repo with .gitIgnore1 ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -122,6 +128,7 @@ public class CreateRepositoryTest {
 
     @Test
     public void gitIgnoreByName() {
+        System.out.println("test - create repo with .gitIgnore2 ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -134,6 +141,7 @@ public class CreateRepositoryTest {
     //TC6----------------------------------
     @Test
     public void licenseByIndex() {
+        System.out.println("test - create repo with licence1 ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -145,6 +153,7 @@ public class CreateRepositoryTest {
 
     @Test
     public void licenseByName() {
+        System.out.println("test - create repo with licence2 ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -157,6 +166,7 @@ public class CreateRepositoryTest {
     //TC7--------------------------------
     @Test
     public void publicRepo() {
+        System.out.println("test - create public repo ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -169,6 +179,7 @@ public class CreateRepositoryTest {
     //TC8--------------------------------
     @Test
     public void privateRepo() {
+        System.out.println("test - create private repo ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -182,6 +193,7 @@ public class CreateRepositoryTest {
     //TC10--------------------------------
     @Test
     public void longDescription() {
+        System.out.println("test - create repo with long description ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -232,6 +244,7 @@ public class CreateRepositoryTest {
     //TC11--------------------------------
     @Test
     public void specialCharsDescription() {
+        System.out.println("test - create repo with special characters ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -244,6 +257,7 @@ public class CreateRepositoryTest {
     //TC14--------------------------------
     @Test
     public void longName() {
+        System.out.println("test - create repo with long repo name ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -255,6 +269,7 @@ public class CreateRepositoryTest {
     //TC17--------------------------------
     @Test
     public void templateARepo() {
+        System.out.println("test - create repo and template it ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -267,6 +282,7 @@ public class CreateRepositoryTest {
     //TC19--------------------------------
     @Test
     public void templateGitIgnore() {
+        System.out.println("test - create repo and template it with .gitignore");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -280,6 +296,7 @@ public class CreateRepositoryTest {
     //TC20--------------------------------
     @Test
     public void templateGitIgnoreLicense() {
+        System.out.println("test - create repo and template it with .gitignore and licence");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -294,7 +311,7 @@ public class CreateRepositoryTest {
     //TC23--------------------------------
     @Test
     public void templateAvatarWebHook() {
-
+        System.out.println("test - create repo from a template it with avatar and webhook");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();

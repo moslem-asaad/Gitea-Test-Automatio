@@ -71,6 +71,7 @@ public class AddNewFileTest {
 
     @Test
     public void emptyFileNameInEmptyRepo() {
+        System.out.println("test - add new file with empty file name");
         createRepositoryPage.validName(repositoryName);
         EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
         NewFilePage newFilePage =  repoPage.clickNewFileButton();
@@ -80,6 +81,7 @@ public class AddNewFileTest {
 
     @Test
     public void validFileNameEmptyContent() {
+        System.out.println("test - add new file with empty content");
         createRepositoryPage.validName(repositoryName);
         EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
         NewFilePage newFilePage =  repoPage.clickNewFileButton();
@@ -90,6 +92,7 @@ public class AddNewFileTest {
 
     @Test
     public void validFileOnNewBranch() {
+        System.out.println("test - add new file on new branch");
         createRepositoryPage.validName(repositoryName);
         createRepositoryPage.selectGitIgnoreTemplateByIndex(3);
         NoneEmoptyRepoPage repoPage = createRepositoryPage.createNoneEmptyRepoSuccess();
@@ -104,6 +107,7 @@ public class AddNewFileTest {
 
     @Test
     public void validFileOnNewBranchWithCommit() {
+        System.out.println("test - add new file with on new branch with commit");
         createRepositoryPage.validName(repositoryName);
         createRepositoryPage.selectGitIgnoreTemplateByIndex(3);
         NoneEmoptyRepoPage repoPage = createRepositoryPage.createNoneEmptyRepoSuccess();
