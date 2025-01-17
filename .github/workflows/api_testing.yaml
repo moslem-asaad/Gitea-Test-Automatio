@@ -17,19 +17,19 @@ jobs:
           distribution: 'temurin'
           java-version: '19'
 
-      - name: Define secrets
-        run: |
-          echo "GITEA_API_TOKEN=${{ secrets.GITEA_API_TOKEN }}" > .env
+      # - name: Define secrets
+      #   run: |
+      #     echo "GITEA_API_TOKEN=${{ secrets.GITEA_API_TOKEN }}" > .env
           
-      - name: Load environment variables
-        run: export $(cat .env | xargs)
+      # - name: Load environment variables
+      #   run: export $(cat .env | xargs)
 
-      - name: Debug environment
-        run: |
-          echo "Contents of .env:"
-          cat .env
-          echo "Environment variables:"
-          env
+      # - name: Debug environment
+      #   run: |
+      #     echo "Contents of .env:"
+      #     cat .env
+      #     echo "Environment variables:"
+      #     env
 
       - name: Debug API Connectivity
         run: |
@@ -37,6 +37,7 @@ jobs:
 
       - name: Run API Tests
         run: |
-          mvn -q test -Dtest=**/apiTests/*
           env:
             GITEA_API_TOKEN: ${{ secrets.GITEA_API_TOKEN }}
+          mvn -q test -Dtest=**/apiTests/*
+         
