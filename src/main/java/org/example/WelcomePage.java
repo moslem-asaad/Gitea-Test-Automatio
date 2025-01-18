@@ -14,7 +14,7 @@ public class WelcomePage extends LoadableComponent<WelcomePage> {
 
     private WebDriver driver;
 
-    private final String baseURL = "https://daa5-5-29-126-14.ngrok-free.app"/*"http://localhost:3000"*/;
+    private final String baseURL = "https://ace6-5-29-126-14.ngrok-free.app"/*"http://localhost:3000"*/;
     @FindBy(linkText = "Sign In")
     private WebElement signInButton;
 

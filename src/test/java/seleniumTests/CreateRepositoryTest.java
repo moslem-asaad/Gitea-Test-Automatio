@@ -33,12 +33,14 @@ public class CreateRepositoryTest {
 
     private final String userName = "moslem";
 
+    private final String URL = "https://ace6-5-29-126-14.ngrok-free.app";
+
     @BeforeEach
     public void setUp(){
         readENV();
         driver = DriverFactory.getDriver();
         driver.manage().window().maximize();
-        driver.get("https://daa5-5-29-126-14.ngrok-free.app");
+        driver.get(URL);
         try {
             Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
@@ -325,16 +327,16 @@ public class CreateRepositoryTest {
 
     public void deleteRepo() throws IOException {
         String token = apiToken;
-        if (token == null || token.isEmpty())
-            token = System.getenv("GITEA_API_TOKEN");
-
-        if (token == null || token.isEmpty()) {
-            System.err.println("GITEA_API_TOKEN is not set in the environment variables.");
-            return;
-        }
+//        if (token == null || token.isEmpty())
+//            token = System.getenv("GITEA_API_TOKEN");
+//
+//        if (token == null || token.isEmpty()) {
+//            System.err.println("GITEA_API_TOKEN is not set in the environment variables.");
+//            return;
+//        }
 
         if (repositoryName != null) {
-            String apiUrl = "http://localhost:3000/api/v1/repos/moslem/" + repositoryName;
+            String apiUrl = URL + "/api/v1/repos/moslem/" + repositoryName;
             HttpURLConnection connection = (HttpURLConnection) new URL(apiUrl).openConnection();
             connection.setRequestMethod("DELETE");
             connection.setRequestProperty("Authorization", "token " + token);
