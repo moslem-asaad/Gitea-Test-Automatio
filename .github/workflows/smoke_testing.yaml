@@ -1,4 +1,4 @@
-name: UI testing
+name: smoke testing
 
 on:
   workflow_dispatch:
