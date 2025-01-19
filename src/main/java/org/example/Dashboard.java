@@ -21,6 +21,12 @@ public class Dashboard extends LoadableComponent<Dashboard>{
     public Dashboard(WebDriver driver){
         this.driver = driver;
         this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        try {
+            Thread.sleep(5000);
+
+        }catch (Exception e){
+
+        }
         PageFactory.initElements(driver,this);
     }
 
@@ -39,11 +45,12 @@ public class Dashboard extends LoadableComponent<Dashboard>{
     public CreateRepositoryPage createRepo()  {
         //this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         try {
-            Thread.sleep(3000);
+            Thread.sleep(5000);
 
         }catch (Exception e){
 
         }
+
         createRepoButton.click();
         return new CreateRepositoryPage(driver);
     }
