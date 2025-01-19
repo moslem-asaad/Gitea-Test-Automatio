@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.time.Duration;
+
 public class NoneEmoptyRepoPage extends RepositoryPage{
 
     @FindBy(css = ".dropdown.basic")
@@ -17,6 +19,7 @@ public class NoneEmoptyRepoPage extends RepositoryPage{
     }
 
     public NewFilePage clickNewFileButton(){
+        this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         addFileButton.click();
         newFileOption.click();
         return new NewFilePage(driver);

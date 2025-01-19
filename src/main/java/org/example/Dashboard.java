@@ -37,6 +37,7 @@ public class Dashboard extends LoadableComponent<Dashboard>{
     }
 
     public CreateRepositoryPage createRepo(){
+        this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         createRepoButton.click();
         return new CreateRepositoryPage(driver);
     }
