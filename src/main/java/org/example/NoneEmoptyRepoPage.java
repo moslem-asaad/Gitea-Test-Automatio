@@ -19,7 +19,11 @@ public class NoneEmoptyRepoPage extends RepositoryPage{
     }
 
     public NewFilePage clickNewFileButton(){
-        this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        try{
+            Thread.sleep(3000);
+        }catch (Exception e){
+
+        }
         addFileButton.click();
         newFileOption.click();
         return new NewFilePage(driver);

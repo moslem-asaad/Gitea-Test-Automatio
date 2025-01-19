@@ -31,11 +31,10 @@ abstract public class RepositoryPage extends LoadableComponent<RepositoryPage> {
 
 
     public RepositoryPage(WebDriver driver){
+        this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         this.driver = driver;
         PageFactory.initElements(driver,this);
     }
-
-
 
     @Override
     protected void load() {
