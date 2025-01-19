@@ -31,8 +31,8 @@ abstract public class RepositoryPage extends LoadableComponent<RepositoryPage> {
 
 
     public RepositoryPage(WebDriver driver){
-        this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         this.driver = driver;
+        this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         PageFactory.initElements(driver,this);
     }
 

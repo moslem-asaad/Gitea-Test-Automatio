@@ -19,9 +19,8 @@ public class Dashboard extends LoadableComponent<Dashboard>{
     private WebElement createRepoButton;
 
     public Dashboard(WebDriver driver){
-        this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         this.driver = driver;
-
+        this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         PageFactory.initElements(driver,this);
     }
 
