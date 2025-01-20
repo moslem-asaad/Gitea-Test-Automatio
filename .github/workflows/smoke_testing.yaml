@@ -14,8 +14,8 @@ on:
         required: false
         type: boolean
 
-      firefox_133_0:
-        description: 'Firefox (133.0)'
+      firefox_134_0_1:
+        description: 'Firefox (134.0.1)'
         required: false
         type: boolean
 
