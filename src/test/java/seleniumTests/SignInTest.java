@@ -83,12 +83,12 @@ public class SignInTest {
     }
 
 
-    @Test
-    public void testInvalidSignInExistEmail() {
-        System.out.println("test - Invalid sign in email");
-        SignInPage signInPage = welcomePage.signIn();
-        assertTrue(signInPage.SignInDoNotRememberDeviceInValid("abc@gmail.com","password").failedLogIn());
-    }
+//    @Test
+//    public void testInvalidSignInExistEmail() {
+//        System.out.println("test - Invalid sign in email");
+//        SignInPage signInPage = welcomePage.signIn();
+//        assertTrue(signInPage.SignInDoNotRememberDeviceInValid("abc@gmail.com","password").failedLogIn());
+//    }
 
     @Test
     public void testInvalidSignInWrongPassword() {

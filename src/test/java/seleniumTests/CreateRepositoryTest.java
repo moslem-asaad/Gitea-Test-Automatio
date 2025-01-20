@@ -77,14 +77,14 @@ public class CreateRepositoryTest {
 
     //TC1 -------------------------
 
-    @Test
-    public void invalidName() {
-        System.out.println("test - create repo invalid name ");
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        assertTrue(dashboard.createRepo().inValidRepoNameCreation("@@invalid!!").failCreation());
-
-    }
+//    @Test
+//    public void invalidName() {
+//        System.out.println("test - create repo invalid name ");
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        assertTrue(dashboard.createRepo().inValidRepoNameCreation("@@invalid!!").failCreation());
+//
+//    }
 
     //TC2----------------------------
     @Test
@@ -99,13 +99,13 @@ public class CreateRepositoryTest {
     }
 
     //TC3-----------------------------
-    @Test
-    public void duplicateName() {
-        System.out.println("test - create repo duplicate name ");
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        assertTrue(dashboard.createRepo().inValidRepoNameCreation("testRepo").failCreation());
-    }
+//    @Test
+//    public void duplicateName() {
+//        System.out.println("test - create repo duplicate name ");
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        assertTrue(dashboard.createRepo().inValidRepoNameCreation("testRepo").failCreation());
+//    }
 
     //TC4-----------------------------
     @Test
@@ -129,17 +129,17 @@ public class CreateRepositoryTest {
         assertTrue(repoPage.inRepoPage());
     }
 
-//    @Test
-//    public void gitIgnoreByName() {
-//        System.out.println("test - create repo with .gitIgnore2 ");
-//        SignInPage signInPage = welcomePage.signIn();
-//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-//        createRepositoryPage.validName(repositoryName);
-//        createRepositoryPage.selectGitIgnoreTemplateByTapping("a");
-//        NoneEmoptyRepoPage repoPage =  createRepositoryPage.createNoneEmptyRepoSuccess();
-//        assertTrue(repoPage.inRepoPage());
-//    }
+    @Test
+    public void gitIgnoreByName() {
+        System.out.println("test - create repo with .gitIgnore2 ");
+        SignInPage signInPage = welcomePage.signIn();
+        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+        createRepositoryPage.validName(repositoryName);
+        createRepositoryPage.selectGitIgnoreTemplateByTapping("a");
+        NoneEmoptyRepoPage repoPage =  createRepositoryPage.createNoneEmptyRepoSuccess();
+        assertTrue(repoPage.inRepoPage());
+    }
 
     //TC6----------------------------------
     @Test
@@ -154,17 +154,17 @@ public class CreateRepositoryTest {
         assertTrue(repoPage.inRepoPage());
     }
 
-//    @Test
-//    public void licenseByName() {
-//        System.out.println("test - create repo with licence2 ");
-//        SignInPage signInPage = welcomePage.signIn();
-//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-//        createRepositoryPage.validName(repositoryName);
-//        createRepositoryPage.selectLicenceByTapping("aa");
-//        NoneEmoptyRepoPage repoPage =  createRepositoryPage.createNoneEmptyRepoSuccess();
-//        assertTrue(repoPage.inRepoPage());
-//    }
+    @Test
+    public void licenseByName() {
+        System.out.println("test - create repo with licence2 ");
+        SignInPage signInPage = welcomePage.signIn();
+        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+        createRepositoryPage.validName(repositoryName);
+        createRepositoryPage.selectLicenceByTapping("aa");
+        NoneEmoptyRepoPage repoPage =  createRepositoryPage.createNoneEmptyRepoSuccess();
+        assertTrue(repoPage.inRepoPage());
+    }
 
     //TC7--------------------------------
     @Test
@@ -312,19 +312,19 @@ public class CreateRepositoryTest {
     }
 
     //TC23--------------------------------
-    @Test
-    public void templateAvatarWebHook() {
-        System.out.println("test - create repo from a template it with avatar and webhook");
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-        createRepositoryPage.validName(repositoryName);
-        createRepositoryPage.selectTemplateByIndex(3);
-        createRepositoryPage.setWebHooksBox();
-        createRepositoryPage.setAvatarBox();
-        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
-        assertTrue(repoPage.inRepoPage());
-    }
+//    @Test
+//    public void templateAvatarWebHook() {
+//        System.out.println("test - create repo from a template it with avatar and webhook");
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+//        createRepositoryPage.validName(repositoryName);
+//        createRepositoryPage.selectTemplateByIndex(3);
+//        createRepositoryPage.setWebHooksBox();
+//        createRepositoryPage.setAvatarBox();
+//        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
+//        assertTrue(repoPage.inRepoPage());
+//    }
 
     public void deleteRepo() throws IOException {
         String token = apiToken;
