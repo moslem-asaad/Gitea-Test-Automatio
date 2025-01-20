@@ -76,10 +76,10 @@ jobs:
           # Tear down grid if exists
           docker stop grid_container || true
 
-  TestFirefox_133_0:
+  TestFirefox_134_0_1:
     name: Test Firefox 133.0
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.firefox_133_0 == 'true' }}
+    if: ${{ github.event.inputs.firefox_134_0_1 == 'true' }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
