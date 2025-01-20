@@ -93,7 +93,7 @@ jobs:
       - name: Launch standalone grid - Firefox
         if: ${{ contains(github.event.inputs.grid_url, 'localhost') }}
         run: |
-          docker run --name grid_container -d -p 4444:4444 --shm-size=2gb selenium/standalone-firefox:133.0-geckodriver-0.35-grid-4.27.0-20250101
+          docker run --name grid_container -d -p 4444:4444 --shm-size=2gb selenium/standalone-firefox:134.0.1-geckodriver-0.35-grid-4.27.0-20250101
 
 #      - name: define secrets
 #        run: |
