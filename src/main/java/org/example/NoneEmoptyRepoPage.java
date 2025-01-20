@@ -8,7 +8,7 @@ import java.time.Duration;
 
 public class NoneEmoptyRepoPage extends RepositoryPage{
 
-    @FindBy(css = ".dropdown.basic")
+    @FindBy(xpath = "//button[contains(., 'Add File')]")
     private WebElement addFileButton;
 
     @FindBy(id = "_aria_auto_id_13")

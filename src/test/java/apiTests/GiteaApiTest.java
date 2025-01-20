@@ -18,8 +18,8 @@ public class GiteaApiTest {
 
     @BeforeAll
     public static void setup() {
-        //RestAssured.baseURI = "http://localhost:3000/api/v1";
-        RestAssured.baseURI = "https://ace6-5-29-126-14.ngrok-free.app/api/v1";
+        RestAssured.baseURI = "http://localhost:3000/api/v1";
+        //RestAssured.baseURI = "https://2bd5-5-29-126-14.ngrok-free.app/api/v1";
         RestAssured.useRelaxedHTTPSValidation();
         RestAssured.port = 443;
         apiToken = System.getenv("GITEA_API_TOKEN");

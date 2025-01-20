@@ -102,8 +102,8 @@ public class NewFilePage extends LoadableComponent<NewFilePage> {
     }
 
     public void addNewBranchName(String branchName){
-//        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5), Duration.ofMillis(500));
-//        wait.until(d -> newBranchNameField.isDisplayed());
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5), Duration.ofMillis(500));
+        wait.until(d -> newBranchNameField.isDisplayed());
         newBranchNameField.clear();
         newBranchNameField.sendKeys(branchName);
     }

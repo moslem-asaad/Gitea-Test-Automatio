@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
@@ -15,18 +17,13 @@ public class Dashboard extends LoadableComponent<Dashboard>{
     private WebDriver driver;
     private final String baseURL = "http://localhost:3000";
 
-    @FindBy(css = "a.tw-flex.tw-items-center.muted")
+    //@FindBy(css = "a.tw-flex.tw-items-center.muted")
+    @FindBy(css = ".dashboard-repos h4 a")
     private WebElement createRepoButton;
 
     public Dashboard(WebDriver driver){
         this.driver = driver;
         this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
-        try {
-            Thread.sleep(5000);
-
-        }catch (Exception e){
-
-        }
         PageFactory.initElements(driver,this);
     }
 
@@ -44,13 +41,9 @@ public class Dashboard extends LoadableComponent<Dashboard>{
 
     public CreateRepositoryPage createRepo()  {
         //this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-        try {
-            Thread.sleep(5000);
 
-        }catch (Exception e){
-
-        }
-
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(5), Duration.ofMillis(500));
+        wait.until(d -> createRepoButton.isDisplayed());
         createRepoButton.click();
         return new CreateRepositoryPage(driver);
     }

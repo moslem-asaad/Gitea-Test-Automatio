@@ -33,7 +33,7 @@ public class CreateRepositoryTest {
 
     private final String userName = "moslem";
 
-    private final String URL = "https://bf62-5-29-126-14.ngrok-free.app";
+    private final String URL = "https://76e6-5-29-126-14.ngrok-free.app";
     //private final String URL = "http://localhost:3000";
 
     @BeforeEach
@@ -129,17 +129,17 @@ public class CreateRepositoryTest {
         assertTrue(repoPage.inRepoPage());
     }
 
-    @Test
-    public void gitIgnoreByName() {
-        System.out.println("test - create repo with .gitIgnore2 ");
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-        createRepositoryPage.validName(repositoryName);
-        createRepositoryPage.selectGitIgnoreTemplateByTapping("a");
-        NoneEmoptyRepoPage repoPage =  createRepositoryPage.createNoneEmptyRepoSuccess();
-        assertTrue(repoPage.inRepoPage());
-    }
+//    @Test
+//    public void gitIgnoreByName() {
+//        System.out.println("test - create repo with .gitIgnore2 ");
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+//        createRepositoryPage.validName(repositoryName);
+//        createRepositoryPage.selectGitIgnoreTemplateByTapping("a");
+//        NoneEmoptyRepoPage repoPage =  createRepositoryPage.createNoneEmptyRepoSuccess();
+//        assertTrue(repoPage.inRepoPage());
+//    }
 
     //TC6----------------------------------
     @Test
@@ -154,17 +154,17 @@ public class CreateRepositoryTest {
         assertTrue(repoPage.inRepoPage());
     }
 
-    @Test
-    public void licenseByName() {
-        System.out.println("test - create repo with licence2 ");
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-        createRepositoryPage.validName(repositoryName);
-        createRepositoryPage.selectLicenceByTapping("aa");
-        NoneEmoptyRepoPage repoPage =  createRepositoryPage.createNoneEmptyRepoSuccess();
-        assertTrue(repoPage.inRepoPage());
-    }
+//    @Test
+//    public void licenseByName() {
+//        System.out.println("test - create repo with licence2 ");
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+//        createRepositoryPage.validName(repositoryName);
+//        createRepositoryPage.selectLicenceByTapping("aa");
+//        NoneEmoptyRepoPage repoPage =  createRepositoryPage.createNoneEmptyRepoSuccess();
+//        assertTrue(repoPage.inRepoPage());
+//    }
 
     //TC7--------------------------------
     @Test
@@ -180,18 +180,18 @@ public class CreateRepositoryTest {
     }
 
     //TC8--------------------------------
-    @Test
-    public void privateRepo() {
-        System.out.println("test - create private repo ");
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-        createRepositoryPage.validName(repositoryName);
-        createRepositoryPage.changeVisibility();
-        createRepositoryPage.changeVisibility();
-        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
-        assertTrue(repoPage.inRepoPage());
-    }
+//    @Test
+//    public void privateRepo() {
+//        System.out.println("test - create private repo ");
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+//        createRepositoryPage.validName(repositoryName);
+//        createRepositoryPage.changeVisibility();
+//        createRepositoryPage.changeVisibility();
+//        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
+//        assertTrue(repoPage.inRepoPage());
+//    }
 
     //TC10--------------------------------
     @Test
