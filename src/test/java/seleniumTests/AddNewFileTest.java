@@ -3,6 +3,7 @@ package seleniumTests;
 import org.example.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -62,19 +63,11 @@ public class AddNewFileTest {
     private void readENV(){
         apiToken = System.getenv("GITEA_API_TOKEN");
         password = System.getenv("Password");
-//        EnvLoader.loadEnv(".env");
-//
-//        apiToken =  EnvLoader.getEnv("GITEA_API_TOKEN");
-//        password = EnvLoader.getEnv("Password");
-//        if (password == null || password.isEmpty()){
-//            password = System.getenv("Password");
-//        }
-
     }
 
     @Test
+    @DisplayName("test - add new file with empty file name")
     public void emptyFileNameInEmptyRepo() {
-        System.out.println("test - add new file with empty file name");
         createRepositoryPage.validName(repositoryName);
         EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
         NewFilePage newFilePage =  repoPage.clickNewFileButton();
@@ -83,8 +76,8 @@ public class AddNewFileTest {
     }
 
     @Test
+    @DisplayName("test - add new file with empty file content")
     public void validFileNameEmptyContent() {
-        System.out.println("test - add new file with empty content");
         createRepositoryPage.validName(repositoryName);
         EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
         NewFilePage newFilePage =  repoPage.clickNewFileButton();
@@ -94,8 +87,8 @@ public class AddNewFileTest {
     }
 
     @Test
+    @DisplayName("test - add new file on new branch")
     public void validFileOnNewBranch() {
-        System.out.println("test - add new file on new branch");
         createRepositoryPage.validName(repositoryName);
         createRepositoryPage.selectGitIgnoreTemplateByIndex(3);
         NoneEmoptyRepoPage repoPage = createRepositoryPage.createNoneEmptyRepoSuccess();
@@ -109,8 +102,8 @@ public class AddNewFileTest {
     }
 
     @Test
+    @DisplayName("test - add new file with on new branch with commit")
     public void validFileOnNewBranchWithCommit() {
-        System.out.println("test - add new file with on new branch with commit");
         createRepositoryPage.validName(repositoryName);
         createRepositoryPage.selectGitIgnoreTemplateByIndex(3);
         NoneEmoptyRepoPage repoPage = createRepositoryPage.createNoneEmptyRepoSuccess();
@@ -128,14 +121,6 @@ public class AddNewFileTest {
 
     public void deleteRepo() throws IOException {
         String token = apiToken;
-//        if (token == null || token.isEmpty())
-//            token = System.getenv("GITEA_API_TOKEN");
-//
-//        if (token == null || token.isEmpty()) {
-//            System.err.println("GITEA_API_TOKEN is not set in the environment variables.");
-//            return;
-//        }
-
         if (repositoryName != null) {
             String apiUrl = URL + "/api/v1/repos/moslem/" + repositoryName;
             HttpURLConnection connection = (HttpURLConnection) new URL(apiUrl).openConnection();
@@ -144,12 +129,12 @@ public class AddNewFileTest {
 
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_NO_CONTENT) {
-                System.out.println("Repository deleted successfully: " + repositoryName);
+                //System.out.println("Repository deleted successfully: " + repositoryName);
             } else {
-                System.err.println("Failed to delete repository. Response code: " + responseCode);
+                //System.err.println("Failed to delete repository. Response code: " + responseCode);
             }
         } else {
-            System.err.println("Repository name is null or empty.");
+            //System.err.println("Repository name is null or empty.");
         }
     }
 

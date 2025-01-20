@@ -3,6 +3,7 @@ package seleniumTests;
 import org.example.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -57,19 +58,11 @@ public class CreateRepositoryTest {
     private void readENV(){
         apiToken = System.getenv("GITEA_API_TOKEN");
         password = System.getenv("Password");
-//        EnvLoader.loadEnv(".env");
-//
-//        apiToken =  EnvLoader.getEnv("GITEA_API_TOKEN");
-//        password = EnvLoader.getEnv("Password");
-//        if (password == null || password.isEmpty()){
-//            password = System.getenv("Password");
-//        }
-
     }
 
     @Test
+    @DisplayName("test - create repo access ")
     public void createRepoAccess() {
-        System.out.println("test - create repo access ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         dashboard.createRepo();
@@ -77,19 +70,19 @@ public class CreateRepositoryTest {
 
     //TC1 -------------------------
 
-//    @Test
-//    public void invalidName() {
-//        System.out.println("test - create repo invalid name ");
-//        SignInPage signInPage = welcomePage.signIn();
-//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-//        assertTrue(dashboard.createRepo().inValidRepoNameCreation("@@invalid!!").failCreation());
-//
-//    }
+    @Test
+    @DisplayName("test - create repo invalid name ")
+    public void invalidName() {
+        SignInPage signInPage = welcomePage.signIn();
+        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+        assertTrue(dashboard.createRepo().inValidRepoNameCreation("@@invalid!!").failCreation());
+
+    }
 
     //TC2----------------------------
     @Test
+    @DisplayName("test - create repo valid name ")
     public void validName() {
-        System.out.println("test - create repo valid name ");
         String repoName = repositoryName;
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
@@ -99,18 +92,18 @@ public class CreateRepositoryTest {
     }
 
     //TC3-----------------------------
-//    @Test
-//    public void duplicateName() {
-//        System.out.println("test - create repo duplicate name ");
-//        SignInPage signInPage = welcomePage.signIn();
-//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-//        assertTrue(dashboard.createRepo().inValidRepoNameCreation("testRepo").failCreation());
-//    }
+    @Test
+    @DisplayName("test - create repo duplicate name ")
+    public void duplicateName() {
+        SignInPage signInPage = welcomePage.signIn();
+        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+        assertTrue(dashboard.createRepo().inValidRepoNameCreation("testRepo").failCreation());
+    }
 
     //TC4-----------------------------
     @Test
+    @DisplayName("test - create repo empty name ")
     public void emptyName() {
-        System.out.println("test - create repo empty name ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         assertTrue(dashboard.createRepo().inValidRepoNameCreation("").failCreation());
@@ -118,8 +111,8 @@ public class CreateRepositoryTest {
 
     //TC5-----------------------------
     @Test
+    @DisplayName("test - create repo with .gitIgnore1 ")
     public void gitIgnoreByIndex() {
-        System.out.println("test - create repo with .gitIgnore1 ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -130,8 +123,8 @@ public class CreateRepositoryTest {
     }
 
     @Test
+    @DisplayName("test - create repo with .gitIgnore2 ")
     public void gitIgnoreByName() {
-        System.out.println("test - create repo with .gitIgnore2 ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -143,8 +136,8 @@ public class CreateRepositoryTest {
 
     //TC6----------------------------------
     @Test
+    @DisplayName("test - create repo with licence1 ")
     public void licenseByIndex() {
-        System.out.println("test - create repo with licence1 ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -155,8 +148,8 @@ public class CreateRepositoryTest {
     }
 
     @Test
+    @DisplayName("test - create repo with licence2 ")
     public void licenseByName() {
-        System.out.println("test - create repo with licence2 ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -168,8 +161,8 @@ public class CreateRepositoryTest {
 
     //TC7--------------------------------
     @Test
+    @DisplayName("test - create public repo ")
     public void publicRepo() {
-        System.out.println("test - create public repo ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -180,23 +173,23 @@ public class CreateRepositoryTest {
     }
 
     //TC8--------------------------------
-//    @Test
-//    public void privateRepo() {
-//        System.out.println("test - create private repo ");
-//        SignInPage signInPage = welcomePage.signIn();
-//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-//        createRepositoryPage.validName(repositoryName);
-//        createRepositoryPage.changeVisibility();
-//        createRepositoryPage.changeVisibility();
-//        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
-//        assertTrue(repoPage.inRepoPage());
-//    }
+    @Test
+    @DisplayName("test - create private repo ")
+    public void privateRepo() {
+        SignInPage signInPage = welcomePage.signIn();
+        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+        createRepositoryPage.validName(repositoryName);
+        createRepositoryPage.changeVisibility();
+        createRepositoryPage.changeVisibility();
+        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
+        assertTrue(repoPage.inRepoPage());
+    }
 
     //TC10--------------------------------
     @Test
+    @DisplayName("test - create repo with long description ")
     public void longDescription() {
-        System.out.println("test - create repo with long description ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -246,8 +239,8 @@ public class CreateRepositoryTest {
 
     //TC11--------------------------------
     @Test
+    @DisplayName("test - create repo with special characters ")
     public void specialCharsDescription() {
-        System.out.println("test - create repo with special characters ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -259,8 +252,8 @@ public class CreateRepositoryTest {
 
     //TC14--------------------------------
     @Test
+    @DisplayName("test - create repo with long repo name ")
     public void longName() {
-        System.out.println("test - create repo with long repo name ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -271,8 +264,8 @@ public class CreateRepositoryTest {
 
     //TC17--------------------------------
     @Test
+    @DisplayName("test - create repo with long repo name ")
     public void templateARepo() {
-        System.out.println("test - create repo and template it ");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -284,8 +277,8 @@ public class CreateRepositoryTest {
 
     //TC19--------------------------------
     @Test
+    @DisplayName("test - create repo and template it with .gitignore ")
     public void templateGitIgnore() {
-        System.out.println("test - create repo and template it with .gitignore");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -298,8 +291,8 @@ public class CreateRepositoryTest {
 
     //TC20--------------------------------
     @Test
+    @DisplayName("test - create repo and template it with .gitignore and licence ")
     public void templateGitIgnoreLicense() {
-        System.out.println("test - create repo and template it with .gitignore and licence");
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
         CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
@@ -312,30 +305,21 @@ public class CreateRepositoryTest {
     }
 
     //TC23--------------------------------
-//    @Test
-//    public void templateAvatarWebHook() {
-//        System.out.println("test - create repo from a template it with avatar and webhook");
-//        SignInPage signInPage = welcomePage.signIn();
-//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-//        createRepositoryPage.validName(repositoryName);
-//        createRepositoryPage.selectTemplateByIndex(3);
-//        createRepositoryPage.setWebHooksBox();
-//        createRepositoryPage.setAvatarBox();
-//        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
-//        assertTrue(repoPage.inRepoPage());
-//    }
+    @Test
+    public void templateAvatarWebHook() {
+        SignInPage signInPage = welcomePage.signIn();
+        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+        createRepositoryPage.validName(repositoryName);
+        createRepositoryPage.selectTemplateByIndex(3);
+        createRepositoryPage.setWebHooksBox();
+        createRepositoryPage.setAvatarBox();
+        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
+        assertTrue(repoPage.inRepoPage());
+    }
 
     public void deleteRepo() throws IOException {
         String token = apiToken;
-//        if (token == null || token.isEmpty())
-//            token = System.getenv("GITEA_API_TOKEN");
-//
-//        if (token == null || token.isEmpty()) {
-//            System.err.println("GITEA_API_TOKEN is not set in the environment variables.");
-//            return;
-//        }
-
         if (repositoryName != null) {
             String apiUrl = URL + "/api/v1/repos/moslem/" + repositoryName;
             HttpURLConnection connection = (HttpURLConnection) new URL(apiUrl).openConnection();
@@ -344,12 +328,12 @@ public class CreateRepositoryTest {
 
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_NO_CONTENT) {
-                System.out.println("Repository deleted successfully: " + repositoryName);
+                //System.out.println("Repository deleted successfully: " + repositoryName);
             } else {
-                System.err.println("Failed to delete repository. Response code: " + responseCode);
+                //System.err.println("Failed to delete repository. Response code: " + responseCode);
             }
         } else {
-            System.err.println("Repository name is null or empty.");
+            //System.err.println("Repository name is null or empty.");
         }
     }
 

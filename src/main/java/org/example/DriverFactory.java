@@ -22,7 +22,6 @@ public class DriverFactory {
             .orElse("chrome");
 
     public static WebDriver getDriver() {
-        System.out.println("Initializing WebDriver...");
         if (grid_url != null) {
             return getRemoteDriver(browser);
         } else {

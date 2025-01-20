@@ -15,15 +15,7 @@ public class NoneEmoptyRepoPage extends RepositoryPage{
     private WebElement newFileOption; //make wait after pressing addFile
 
     public NoneEmoptyRepoPage(WebDriver driver) {
-
         super(driver);
-
-        try {
-            Thread.sleep(5000);
-
-        }catch (Exception e){
-
-        }
     }
 
     public NewFilePage clickNewFileButton(){

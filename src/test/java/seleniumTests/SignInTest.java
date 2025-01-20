@@ -6,6 +6,7 @@ import org.example.WelcomePage;
 import org.example.SignInPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
@@ -30,13 +31,12 @@ public class SignInTest {
     private final String userName = "moslem";
     private static String password;
 
-    private final String URL = "https://76e6-5-29-126-14.ngrok-free.app";
-    //private final String URL = "http://localhost:3000";
+    //private final String URL = "https://76e6-5-29-126-14.ngrok-free.app";
+    private final String URL = "http://localhost:3000";
 
 
     @BeforeEach
     public void setUp(){
-        System.out.println("in set up sign in tests");
         readENV();
         driver = DriverFactory.getDriver();
         driver.manage().window().maximize();
@@ -46,75 +46,68 @@ public class SignInTest {
             WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
             visitSiteButton.click();
         } catch (TimeoutException err) {
-            System.out.println("Ngrok warning page was not loaded");
+            //System.out.println("Ngrok warning page was not loaded");
         }
-        System.out.println("before init welcome page");
         welcomePage = new WelcomePage(driver).get();
 
     }
 
     private void readENV(){
-//        EnvLoader.loadEnv(".env");
-//        password = EnvLoader.getEnv("Password");
-//        if (password == null || password.isEmpty()){
-            password = System.getenv("Password");
-        //} //
+        password = System.getenv("Password");
     }
 
     @Test
+    @DisplayName("test - sign in page access success")
     public void testAccessToSignInSuccess() {
-        System.out.println("test - sign in page access success");
         SignInPage signInPage = welcomePage.signIn();
     }
 
     @Test
+    @DisplayName("test - Invalid sign in username")
     public void testInvalidSignInExistUserName() {
-        System.out.println("test - Invalid sign in username");
         SignInPage signInPage = welcomePage.signIn();
         assertTrue(signInPage.SignInDoNotRememberDeviceInValid("unexist","password").failedLogIn());
     }
 
     @Test
+    @DisplayName("test - Invalid sign in empty username")
     public void testInvalidSignEmptyUserName() {
-        System.out.println("test - Invalid sign in empty username");
         SignInPage signInPage = welcomePage.signIn();
-
         assertTrue(signInPage.SignInDoNotRememberDeviceInValid("","password").failedLogIn());
     }
 
 
 //    @Test
 //    public void testInvalidSignInExistEmail() {
-//        System.out.println("test - Invalid sign in email");
 //        SignInPage signInPage = welcomePage.signIn();
 //        assertTrue(signInPage.SignInDoNotRememberDeviceInValid("abc@gmail.com","password").failedLogIn());
 //    }
 
     @Test
+    @DisplayName("test - Invalid sign in wrong password")
     public void testInvalidSignInWrongPassword() {
-        System.out.println("test - Invalid sign in wrong password");
         SignInPage signInPage = welcomePage.signIn();
         assertTrue(signInPage.SignInDoNotRememberDeviceInValid(userName,"password").failedLogIn());
     }
 
     @Test
+    @DisplayName("test - Invalid sign in empty password")
     public void testInvalidSignInEmptyPassword() {
-        System.out.println("test - Invalid sign in empty password");
         SignInPage signInPage = welcomePage.signIn();
         assertTrue(signInPage.SignInDoNotRememberDeviceInValid(userName,"").failedLogIn());
     }
 
     @Test
+    @DisplayName("test - sign in success")
     public void testSignInSuccess() {
-        System.out.println("test -  sign in success");
         SignInPage signInPage = welcomePage.signIn();
         signInPage.SignInDoNotRememberDeviceValid(userName,password);
         assertFalse(signInPage.failedLogIn());
     }
 
     @Test
+    @DisplayName("test - sign in success2")
     public void testSignInSuccess2() {
-        System.out.println("test - sign in success2");
         SignInPage signInPage = welcomePage.signIn();
         signInPage.SignInDoNotRememberDeviceValid("asaadmoslem2000@gmail.com",password);
         assertFalse(signInPage.failedLogIn());
