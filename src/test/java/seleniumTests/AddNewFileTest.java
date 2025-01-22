@@ -32,8 +32,8 @@ public class AddNewFileTest {
 
     private static String password;
 
-    private final String URL = "https://76e6-5-29-126-14.ngrok-free.app";
-    //private final String URL = "http://localhost:3000";
+    //private final String URL = "https://76e6-5-29-126-14.ngrok-free.app";
+    private final String URL = "http://localhost:3000";
 
 
 

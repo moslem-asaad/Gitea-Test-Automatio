@@ -40,7 +40,6 @@ abstract public class RepositoryPage extends LoadableComponent<RepositoryPage> {
     protected void load() {
         this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         driver.get(baseURL + links.get(2).getDomProperty("href"));
-        System.out.println(driver.getCurrentUrl());
     }
 
     @Override
@@ -50,8 +49,6 @@ abstract public class RepositoryPage extends LoadableComponent<RepositoryPage> {
 
     public boolean inRepoPage(){
         if (links == null || links.size() == 0) return false;
-        System.out.println(driver.getTitle());
-        System.out.println(getRepositoryName(links.get(1).getDomProperty("href")));
         return (driver.getTitle()).contains(getRepositoryName(links.get(1).getDomProperty("href")));
     }
 

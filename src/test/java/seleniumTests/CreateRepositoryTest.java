@@ -34,8 +34,8 @@ public class CreateRepositoryTest {
 
     private final String userName = "moslem";
 
-    private final String URL = "https://76e6-5-29-126-14.ngrok-free.app";
-    //private final String URL = "http://localhost:3000";
+    //private final String URL = "https://76e6-5-29-126-14.ngrok-free.app";
+    private final String URL = "http://localhost:3000";
 
     @BeforeEach
     public void setUp(){
@@ -48,7 +48,7 @@ public class CreateRepositoryTest {
             WebElement visitSiteButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Visit Site']")));
             visitSiteButton.click();
         } catch (TimeoutException err) {
-            System.out.println("Ngrok warning page was not loaded");
+            //System.out.println("Ngrok warning page was not loaded");
         }
         welcomePage = new WelcomePage(driver).get();
 
@@ -277,7 +277,7 @@ public class CreateRepositoryTest {
 
     //TC19--------------------------------
     @Test
-    @DisplayName("test - create repo and template it with .gitignore ")
+    @DisplayName("test - template .gitignore ")
     public void templateGitIgnore() {
         SignInPage signInPage = welcomePage.signIn();
         Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);

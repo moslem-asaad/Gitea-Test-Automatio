@@ -23,18 +23,6 @@ public class GiteaApiTest {
         RestAssured.useRelaxedHTTPSValidation();
         RestAssured.port = 443;
         apiToken = System.getenv("GITEA_API_TOKEN");
-//        RestAssured.requestSpecification = new RequestSpecBuilder()
-//                .addHeader("ngrok-skip-browser-warning", "true")
-//                .build();
-//        EnvLoader.loadEnv(".env");
-//        apiToken =  EnvLoader.getEnv("GITEA_API_TOKEN");
-//        if (apiToken == null || apiToken.isEmpty())
-//            apiToken = System.getenv("GITEA_API_TOKEN");
-//
-//        if (apiToken == null || apiToken.isEmpty()) {
-//            System.err.println("GITEA_API_TOKEN is not set in the environment variables.");
-//        }
-
     }
 
     @Test

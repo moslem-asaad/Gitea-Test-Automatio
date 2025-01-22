@@ -73,7 +73,7 @@ public class CreateRepositoryPage extends LoadableComponent<CreateRepositoryPage
     protected void load() {
         this.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         driver.get(baseURL + "/repo/create");
-        System.out.println(driver.getCurrentUrl());
+        //System.out.println(driver.getCurrentUrl());
     }
 
     @Override
