@@ -1,9 +1,5 @@
-# Use an official Maven image
-FROM maven:3.8.5-openjdk-17 AS builder
-
-# Install OpenJDK 19 manually
-RUN apt-get update && apt-get install -y openjdk-19-jdk && \
-    update-alternatives --set java /usr/lib/jvm/java-19-openjdk-amd64/bin/java
+# Use an official Maven image with OpenJDK 21
+FROM maven:3.9.4-eclipse-temurin-21 AS builder
 
 # Set working directory
 WORKDIR /app
@@ -15,7 +11,7 @@ COPY . .
 RUN mvn clean install
 
 # Use a smaller JDK image for running tests
-FROM openjdk:19-jdk-slim
+FROM eclipse-temurin:21-jdk-slim
 
 # Set working directory
 WORKDIR /app
