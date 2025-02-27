@@ -1,5 +1,5 @@
-# Use an official Maven image with OpenJDK 21
-FROM maven:3.9.4-eclipse-temurin-21 AS builder
+# Use an official Maven image with Java 21
+FROM eclipse-temurin:21 AS builder
 
 # Set working directory
 WORKDIR /app
@@ -10,8 +10,8 @@ COPY . .
 # Build the project (including tests)
 RUN mvn clean install
 
-# Use a smaller JDK image for running tests
-FROM eclipse-temurin:21-jdk-slim
+# Use a smaller Java 21 JRE image for running tests
+FROM eclipse-temurin:21-jre AS runtime
 
 # Set working directory
 WORKDIR /app
