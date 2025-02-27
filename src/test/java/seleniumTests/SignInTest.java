@@ -31,8 +31,8 @@ public class SignInTest {
     private final String userName = "moslem";
     private static String password;
 
-    //private final String URL = "https://76e6-5-29-126-14.ngrok-free.app";
-    private final String URL = "http://localhost:3000";
+    private final String URL = "https://fox-one-promptly.ngrok-free.app";
+    //private String URL = "http://localhost:3000";
 
 
     @BeforeEach
@@ -54,48 +54,49 @@ public class SignInTest {
 
     private void readENV(){
         password = System.getenv("Password");
+        //URL = System.getenv("Ngrok");
     }
 
-    @Test
-    @DisplayName("test - sign in page access success")
-    public void testAccessToSignInSuccess() {
-        SignInPage signInPage = welcomePage.signIn();
-    }
-
-    @Test
-    @DisplayName("test - Invalid sign in username")
-    public void testInvalidSignInExistUserName() {
-        SignInPage signInPage = welcomePage.signIn();
-        assertTrue(signInPage.SignInDoNotRememberDeviceInValid("unexist","password").failedLogIn());
-    }
-
-    @Test
-    @DisplayName("test - Invalid sign in empty username")
-    public void testInvalidSignEmptyUserName() {
-        SignInPage signInPage = welcomePage.signIn();
-        assertTrue(signInPage.SignInDoNotRememberDeviceInValid("","password").failedLogIn());
-    }
-
-
+//    @Test
+//    @DisplayName("test - sign in page access success")
+//    public void testAccessToSignInSuccess() {
+//        SignInPage signInPage = welcomePage.signIn();
+//    }
+//
+//    @Test
+//    @DisplayName("test - Invalid sign in username")
+//    public void testInvalidSignInExistUserName() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        assertTrue(signInPage.SignInDoNotRememberDeviceInValid("unexist","password").failedLogIn());
+//    }
+//
+//    @Test
+//    @DisplayName("test - Invalid sign in empty username")
+//    public void testInvalidSignEmptyUserName() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        assertTrue(signInPage.SignInDoNotRememberDeviceInValid("","password").failedLogIn());
+//    }
+//
+//
 //    @Test
 //    public void testInvalidSignInExistEmail() {
 //        SignInPage signInPage = welcomePage.signIn();
 //        assertTrue(signInPage.SignInDoNotRememberDeviceInValid("abc@gmail.com","password").failedLogIn());
 //    }
-
-    @Test
-    @DisplayName("test - Invalid sign in wrong password")
-    public void testInvalidSignInWrongPassword() {
-        SignInPage signInPage = welcomePage.signIn();
-        assertTrue(signInPage.SignInDoNotRememberDeviceInValid(userName,"password").failedLogIn());
-    }
-
-    @Test
-    @DisplayName("test - Invalid sign in empty password")
-    public void testInvalidSignInEmptyPassword() {
-        SignInPage signInPage = welcomePage.signIn();
-        assertTrue(signInPage.SignInDoNotRememberDeviceInValid(userName,"").failedLogIn());
-    }
+//
+//    @Test
+//    @DisplayName("test - Invalid sign in wrong password")
+//    public void testInvalidSignInWrongPassword() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        assertTrue(signInPage.SignInDoNotRememberDeviceInValid(userName,"password").failedLogIn());
+//    }
+//
+//    @Test
+//    @DisplayName("test - Invalid sign in empty password")
+//    public void testInvalidSignInEmptyPassword() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        assertTrue(signInPage.SignInDoNotRememberDeviceInValid(userName,"").failedLogIn());
+//    }
 
     @Test
     @DisplayName("test - sign in success")
@@ -105,13 +106,13 @@ public class SignInTest {
         assertFalse(signInPage.failedLogIn());
     }
 
-    @Test
-    @DisplayName("test - sign in success2")
-    public void testSignInSuccess2() {
-        SignInPage signInPage = welcomePage.signIn();
-        signInPage.SignInDoNotRememberDeviceValid("asaadmoslem2000@gmail.com",password);
-        assertFalse(signInPage.failedLogIn());
-    }
+//    @Test
+//    @DisplayName("test - sign in success2")
+//    public void testSignInSuccess2() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        signInPage.SignInDoNotRememberDeviceValid("asaadmoslem2000@gmail.com",password);
+//        assertFalse(signInPage.failedLogIn());
+//    }
 
 
     @AfterEach

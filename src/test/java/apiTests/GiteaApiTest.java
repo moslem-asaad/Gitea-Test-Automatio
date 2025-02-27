@@ -15,10 +15,12 @@ public class GiteaApiTest {
     private final String owner = "moslem";
     private static String apiToken;
 
+    private static String url = "https://fox-one-promptly.ngrok-free.app";
+
 
     @BeforeAll
     public static void setup() {
-        RestAssured.baseURI = "http://localhost:3000/api/v1";
+        RestAssured.baseURI = url + "/api/v1";
         //RestAssured.baseURI = "https://2bd5-5-29-126-14.ngrok-free.app/api/v1";
         RestAssured.useRelaxedHTTPSValidation();
         RestAssured.port = 443;
@@ -44,7 +46,7 @@ public class GiteaApiTest {
     @Test
     @Order(2)
     public void testGetRepositoryDetails() {
-        String repo = "testRepo";
+        String repo = "newRepo";
         given().
                 //header("ngrok-skip-browser-warning", "true").
                 header("Authorization", "token " + apiToken).

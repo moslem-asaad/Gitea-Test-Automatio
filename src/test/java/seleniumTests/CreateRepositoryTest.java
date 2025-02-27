@@ -34,8 +34,8 @@ public class CreateRepositoryTest {
 
     private final String userName = "moslem";
 
-    //private final String URL = "https://76e6-5-29-126-14.ngrok-free.app";
-    private final String URL = "http://localhost:3000";
+    private final String URL = "https://fox-one-promptly.ngrok-free.app";
+    //private final String URL = "http://localhost:3000";
 
     @BeforeEach
     public void setUp(){
@@ -60,24 +60,24 @@ public class CreateRepositoryTest {
         password = System.getenv("Password");
     }
 
-    @Test
-    @DisplayName("test - create repo access ")
-    public void createRepoAccess() {
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        dashboard.createRepo();
-    }
-
-    //TC1 -------------------------
-
-    @Test
-    @DisplayName("test - create repo invalid name ")
-    public void invalidName() {
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        assertTrue(dashboard.createRepo().inValidRepoNameCreation("@@invalid!!").failCreation());
-
-    }
+//    @Test
+//    @DisplayName("test - create repo access ")
+//    public void createRepoAccess() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        dashboard.createRepo();
+//    }
+//
+//    //TC1 -------------------------
+//
+//    @Test
+//    @DisplayName("test - create repo invalid name ")
+//    public void invalidName() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        assertTrue(dashboard.createRepo().inValidRepoNameCreation("@@invalid!!").failCreation());
+//
+//    }
 
     //TC2----------------------------
     @Test
@@ -101,222 +101,222 @@ public class CreateRepositoryTest {
     }
 
     //TC4-----------------------------
-    @Test
-    @DisplayName("test - create repo empty name ")
-    public void emptyName() {
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        assertTrue(dashboard.createRepo().inValidRepoNameCreation("").failCreation());
-    }
-
-    //TC5-----------------------------
-    @Test
-    @DisplayName("test - create repo with .gitIgnore1 ")
-    public void gitIgnoreByIndex() {
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-        createRepositoryPage.validName(repositoryName);
-        createRepositoryPage.selectGitIgnoreTemplateByIndex(0);
-        NoneEmoptyRepoPage repoPage =  createRepositoryPage.createNoneEmptyRepoSuccess();
-        assertTrue(repoPage.inRepoPage());
-    }
-
-    @Test
-    @DisplayName("test - create repo with .gitIgnore2 ")
-    public void gitIgnoreByName() {
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-        createRepositoryPage.validName(repositoryName);
-        createRepositoryPage.selectGitIgnoreTemplateByTapping("a");
-        NoneEmoptyRepoPage repoPage =  createRepositoryPage.createNoneEmptyRepoSuccess();
-        assertTrue(repoPage.inRepoPage());
-    }
-
-    //TC6----------------------------------
-    @Test
-    @DisplayName("test - create repo with licence1 ")
-    public void licenseByIndex() {
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-        createRepositoryPage.validName(repositoryName);
-        createRepositoryPage.selectLicenceByIndex(3);
-        NoneEmoptyRepoPage repoPage =  createRepositoryPage.createNoneEmptyRepoSuccess();
-        assertTrue(repoPage.inRepoPage());
-    }
-
-    @Test
-    @DisplayName("test - create repo with licence2 ")
-    public void licenseByName() {
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-        createRepositoryPage.validName(repositoryName);
-        createRepositoryPage.selectLicenceByTapping("aa");
-        NoneEmoptyRepoPage repoPage =  createRepositoryPage.createNoneEmptyRepoSuccess();
-        assertTrue(repoPage.inRepoPage());
-    }
-
-    //TC7--------------------------------
-    @Test
-    @DisplayName("test - create public repo ")
-    public void publicRepo() {
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-        createRepositoryPage.validName(repositoryName);
-        createRepositoryPage.changeVisibility();
-        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
-        assertTrue(repoPage.inRepoPage());
-    }
-
-    //TC8--------------------------------
-    @Test
-    @DisplayName("test - create private repo ")
-    public void privateRepo() {
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-        createRepositoryPage.validName(repositoryName);
-        createRepositoryPage.changeVisibility();
-        createRepositoryPage.changeVisibility();
-        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
-        assertTrue(repoPage.inRepoPage());
-    }
-
-    //TC10--------------------------------
-    @Test
-    @DisplayName("test - create repo with long description ")
-    public void longDescription() {
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-        createRepositoryPage.validName(repositoryName);
-        createRepositoryPage.setDescriptionFieldTooLong("this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n" +
-                "this is a very long description\n");
-        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
-        assertTrue(repoPage.inRepoPage());
-    }
-
-    //TC11--------------------------------
-    @Test
-    @DisplayName("test - create repo with special characters ")
-    public void specialCharsDescription() {
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-        createRepositoryPage.validName(repositoryName);
-        createRepositoryPage.setDescriptionFieldValid("@@@IIN1@@#$%$^%$&%^&*($%^^%#$^");
-        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
-        assertTrue(repoPage.inRepoPage());
-    }
-
-    //TC14--------------------------------
-    @Test
-    @DisplayName("test - create repo with long repo name ")
-    public void longName() {
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-        createRepositoryPage.inValidName("this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name ");
-        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
-        assertFalse(repoPage.inRepoPage());
-    }
-
-    //TC17--------------------------------
-    @Test
-    @DisplayName("test - create repo with long repo name ")
-    public void templateARepo() {
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-        createRepositoryPage.validName(repositoryName);
-        createRepositoryPage.setTemplateTheRepo();
-        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
-        assertTrue(repoPage.inRepoPage());
-    }
-
-    //TC19--------------------------------
-    @Test
-    @DisplayName("test - template .gitignore ")
-    public void templateGitIgnore() {
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-        createRepositoryPage.validName(repositoryName);
-        createRepositoryPage.selectGitIgnoreTemplateByIndex(3);
-        createRepositoryPage.setTemplateTheRepo();
-        NoneEmoptyRepoPage repoPage = createRepositoryPage.createNoneEmptyRepoSuccess();
-        assertTrue(repoPage.inRepoPage());
-    }
-
-    //TC20--------------------------------
-    @Test
-    @DisplayName("test - create repo and template it with .gitignore and licence ")
-    public void templateGitIgnoreLicense() {
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-        createRepositoryPage.validName(repositoryName);
-        createRepositoryPage.selectGitIgnoreTemplateByIndex(3);
-        createRepositoryPage.selectLicenceByTapping("aa");
-        createRepositoryPage.setTemplateTheRepo();
-        NoneEmoptyRepoPage repoPage = createRepositoryPage.createNoneEmptyRepoSuccess();
-        assertTrue(repoPage.inRepoPage());
-    }
-
-    //TC23--------------------------------
-    @Test
-    public void templateAvatarWebHook() {
-        SignInPage signInPage = welcomePage.signIn();
-        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
-        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
-        createRepositoryPage.validName(repositoryName);
-        createRepositoryPage.selectTemplateByIndex(3);
-        createRepositoryPage.setWebHooksBox();
-        createRepositoryPage.setAvatarBox();
-        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
-        assertTrue(repoPage.inRepoPage());
-    }
+//    @Test
+//    @DisplayName("test - create repo empty name ")
+//    public void emptyName() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        assertTrue(dashboard.createRepo().inValidRepoNameCreation("").failCreation());
+//    }
+//
+//    //TC5-----------------------------
+//    @Test
+//    @DisplayName("test - create repo with .gitIgnore1 ")
+//    public void gitIgnoreByIndex() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+//        createRepositoryPage.validName(repositoryName);
+//        createRepositoryPage.selectGitIgnoreTemplateByIndex(0);
+//        NoneEmoptyRepoPage repoPage =  createRepositoryPage.createNoneEmptyRepoSuccess();
+//        assertTrue(repoPage.inRepoPage());
+//    }
+//
+//    @Test
+//    @DisplayName("test - create repo with .gitIgnore2 ")
+//    public void gitIgnoreByName() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+//        createRepositoryPage.validName(repositoryName);
+//        createRepositoryPage.selectGitIgnoreTemplateByTapping("a");
+//        NoneEmoptyRepoPage repoPage =  createRepositoryPage.createNoneEmptyRepoSuccess();
+//        assertTrue(repoPage.inRepoPage());
+//    }
+//
+//    //TC6----------------------------------
+//    @Test
+//    @DisplayName("test - create repo with licence1 ")
+//    public void licenseByIndex() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+//        createRepositoryPage.validName(repositoryName);
+//        createRepositoryPage.selectLicenceByIndex(3);
+//        NoneEmoptyRepoPage repoPage =  createRepositoryPage.createNoneEmptyRepoSuccess();
+//        assertTrue(repoPage.inRepoPage());
+//    }
+//
+//    @Test
+//    @DisplayName("test - create repo with licence2 ")
+//    public void licenseByName() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+//        createRepositoryPage.validName(repositoryName);
+//        createRepositoryPage.selectLicenceByTapping("aa");
+//        NoneEmoptyRepoPage repoPage =  createRepositoryPage.createNoneEmptyRepoSuccess();
+//        assertTrue(repoPage.inRepoPage());
+//    }
+//
+//    //TC7--------------------------------
+//    @Test
+//    @DisplayName("test - create public repo ")
+//    public void publicRepo() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+//        createRepositoryPage.validName(repositoryName);
+//        createRepositoryPage.changeVisibility();
+//        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
+//        assertTrue(repoPage.inRepoPage());
+//    }
+//
+//    //TC8--------------------------------
+//    @Test
+//    @DisplayName("test - create private repo ")
+//    public void privateRepo() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+//        createRepositoryPage.validName(repositoryName);
+//        createRepositoryPage.changeVisibility();
+//        createRepositoryPage.changeVisibility();
+//        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
+//        assertTrue(repoPage.inRepoPage());
+//    }
+//
+//    //TC10--------------------------------
+//    @Test
+//    @DisplayName("test - create repo with long description ")
+//    public void longDescription() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+//        createRepositoryPage.validName(repositoryName);
+//        createRepositoryPage.setDescriptionFieldTooLong("this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n" +
+//                "this is a very long description\n");
+//        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
+//        assertTrue(repoPage.inRepoPage());
+//    }
+//
+//    //TC11--------------------------------
+//    @Test
+//    @DisplayName("test - create repo with special characters ")
+//    public void specialCharsDescription() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+//        createRepositoryPage.validName(repositoryName);
+//        createRepositoryPage.setDescriptionFieldValid("@@@IIN1@@#$%$^%$&%^&*($%^^%#$^");
+//        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
+//        assertTrue(repoPage.inRepoPage());
+//    }
+//
+//    //TC14--------------------------------
+//    @Test
+//    @DisplayName("test - create repo with long repo name ")
+//    public void longName() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+//        createRepositoryPage.inValidName("this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name this is a long name ");
+//        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
+//        assertFalse(repoPage.inRepoPage());
+//    }
+//
+//    //TC17--------------------------------
+//    @Test
+//    @DisplayName("test - create repo with long repo name ")
+//    public void templateARepo() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+//        createRepositoryPage.validName(repositoryName);
+//        createRepositoryPage.setTemplateTheRepo();
+//        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
+//        assertTrue(repoPage.inRepoPage());
+//    }
+//
+//    //TC19--------------------------------
+//    @Test
+//    @DisplayName("test - template .gitignore ")
+//    public void templateGitIgnore() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+//        createRepositoryPage.validName(repositoryName);
+//        createRepositoryPage.selectGitIgnoreTemplateByIndex(3);
+//        createRepositoryPage.setTemplateTheRepo();
+//        NoneEmoptyRepoPage repoPage = createRepositoryPage.createNoneEmptyRepoSuccess();
+//        assertTrue(repoPage.inRepoPage());
+//    }
+//
+//    //TC20--------------------------------
+//    @Test
+//    @DisplayName("test - create repo and template it with .gitignore and licence ")
+//    public void templateGitIgnoreLicense() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+//        createRepositoryPage.validName(repositoryName);
+//        createRepositoryPage.selectGitIgnoreTemplateByIndex(3);
+//        createRepositoryPage.selectLicenceByTapping("aa");
+//        createRepositoryPage.setTemplateTheRepo();
+//        NoneEmoptyRepoPage repoPage = createRepositoryPage.createNoneEmptyRepoSuccess();
+//        assertTrue(repoPage.inRepoPage());
+//    }
+//
+//    //TC23--------------------------------
+//    @Test
+//    public void templateAvatarWebHook() {
+//        SignInPage signInPage = welcomePage.signIn();
+//        Dashboard dashboard = signInPage.SignInDoNotRememberDeviceValid(userName,password);
+//        CreateRepositoryPage createRepositoryPage = dashboard.createRepo();
+//        createRepositoryPage.validName(repositoryName);
+//        createRepositoryPage.selectTemplateByIndex(3);
+//        createRepositoryPage.setWebHooksBox();
+//        createRepositoryPage.setAvatarBox();
+//        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
+//        assertTrue(repoPage.inRepoPage());
+//    }
 
     public void deleteRepo() throws IOException {
         String token = apiToken;

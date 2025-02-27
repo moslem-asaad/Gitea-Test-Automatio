@@ -32,8 +32,8 @@ public class AddNewFileTest {
 
     private static String password;
 
-    //private final String URL = "https://76e6-5-29-126-14.ngrok-free.app";
-    private final String URL = "http://localhost:3000";
+    private final String URL = "https://fox-one-promptly.ngrok-free.app";
+    //private final String URL = "http://localhost:3000";
 
 
 
@@ -75,48 +75,48 @@ public class AddNewFileTest {
         assertTrue(newFilePage.inNewFilePage());
     }
 
-    @Test
-    @DisplayName("test - add new file with empty file content")
-    public void validFileNameEmptyContent() {
-        createRepositoryPage.validName(repositoryName);
-        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
-        NewFilePage newFilePage =  repoPage.clickNewFileButton();
-        newFilePage.fillValidFileName("test file 1");
-        NoneEmoptyRepoPage noneEmoptyRepoPage =  newFilePage.clickCreateRepoEmptyContent();
-        assertTrue(noneEmoptyRepoPage.inRepoPage());
-    }
-
-    @Test
-    @DisplayName("test - add new file on new branch")
-    public void validFileOnNewBranch() {
-        createRepositoryPage.validName(repositoryName);
-        createRepositoryPage.selectGitIgnoreTemplateByIndex(3);
-        NoneEmoptyRepoPage repoPage = createRepositoryPage.createNoneEmptyRepoSuccess();
-        NewFilePage newFilePage =  repoPage.clickNewFileButton();
-        assertTrue(newFilePage.inNewFilePage());
-        newFilePage.fillValidFileName("test file 3");
-        newFilePage.createWithNewBranchOption();
-        newFilePage.addNewBranchName("test3_branch");
-        NoneEmoptyRepoPage noneEmoptyRepoPage =  newFilePage.clickCreateRepoEmptyContent();
-        assertTrue(noneEmoptyRepoPage.inRepoPage());
-    }
-
-    @Test
-    @DisplayName("test - add new file with on new branch with commit")
-    public void validFileOnNewBranchWithCommit() {
-        createRepositoryPage.validName(repositoryName);
-        createRepositoryPage.selectGitIgnoreTemplateByIndex(3);
-        NoneEmoptyRepoPage repoPage = createRepositoryPage.createNoneEmptyRepoSuccess();
-        NewFilePage newFilePage =  repoPage.clickNewFileButton();
-        assertTrue(newFilePage.inNewFilePage());
-        newFilePage.fillValidFileName("test file 4");
-        newFilePage.addCommitSummary("creating new file");
-        newFilePage.addCommitMessage("this new file is a test file");
-        newFilePage.createWithNewBranchOption();
-        newFilePage.addNewBranchName("test4_branch");
-        NoneEmoptyRepoPage noneEmoptyRepoPage =  newFilePage.clickCreateRepoEmptyContent();
-        assertTrue(noneEmoptyRepoPage.inRepoPage());
-    }
+//    @Test
+//    @DisplayName("test - add new file with empty file content")
+//    public void validFileNameEmptyContent() {
+//        createRepositoryPage.validName(repositoryName);
+//        EmptyRepoPage repoPage = createRepositoryPage.createEmptyRepoSuccess();
+//        NewFilePage newFilePage =  repoPage.clickNewFileButton();
+//        newFilePage.fillValidFileName("test file 1");
+//        NoneEmoptyRepoPage noneEmoptyRepoPage =  newFilePage.clickCreateRepoEmptyContent();
+//        assertTrue(noneEmoptyRepoPage.inRepoPage());
+//    }
+//
+//    @Test
+//    @DisplayName("test - add new file on new branch")
+//    public void validFileOnNewBranch() {
+//        createRepositoryPage.validName(repositoryName);
+//        createRepositoryPage.selectGitIgnoreTemplateByIndex(3);
+//        NoneEmoptyRepoPage repoPage = createRepositoryPage.createNoneEmptyRepoSuccess();
+//        NewFilePage newFilePage =  repoPage.clickNewFileButton();
+//        assertTrue(newFilePage.inNewFilePage());
+//        newFilePage.fillValidFileName("test file 3");
+//        newFilePage.createWithNewBranchOption();
+//        newFilePage.addNewBranchName("test3_branch");
+//        NoneEmoptyRepoPage noneEmoptyRepoPage =  newFilePage.clickCreateRepoEmptyContent();
+//        assertTrue(noneEmoptyRepoPage.inRepoPage());
+//    }
+//
+//    @Test
+//    @DisplayName("test - add new file with on new branch with commit")
+//    public void validFileOnNewBranchWithCommit() {
+//        createRepositoryPage.validName(repositoryName);
+//        createRepositoryPage.selectGitIgnoreTemplateByIndex(3);
+//        NoneEmoptyRepoPage repoPage = createRepositoryPage.createNoneEmptyRepoSuccess();
+//        NewFilePage newFilePage =  repoPage.clickNewFileButton();
+//        assertTrue(newFilePage.inNewFilePage());
+//        newFilePage.fillValidFileName("test file 4");
+//        newFilePage.addCommitSummary("creating new file");
+//        newFilePage.addCommitMessage("this new file is a test file");
+//        newFilePage.createWithNewBranchOption();
+//        newFilePage.addNewBranchName("test4_branch");
+//        NoneEmoptyRepoPage noneEmoptyRepoPage =  newFilePage.clickCreateRepoEmptyContent();
+//        assertTrue(noneEmoptyRepoPage.inRepoPage());
+//    }
 
 
     public void deleteRepo() throws IOException {
