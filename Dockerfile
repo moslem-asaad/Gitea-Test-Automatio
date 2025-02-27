@@ -1,29 +1,15 @@
-# Use an official Maven image with Java 21
-FROM eclipse-temurin:21 AS builder
+# Use OpenJDK 23 with Maven
+FROM maven:3.9-eclipse-temurin-23
 
 # Set working directory
-WORKDIR /app
+WORKDIR /tests
 
-# Copy the project files
-COPY . .
+# Copy test files & dependencies
+COPY pom.xml ./
+RUN mvn dependency:go-offline  # Cache dependencies
 
-# Build the project (including tests)
-RUN mvn clean install
+# Copy the test source files
+COPY src ./src
 
-# Use a smaller Java 21 JRE image for running tests
-FROM eclipse-temurin:21-jre AS runtime
-
-# Set working directory
-WORKDIR /app
-
-# Copy the built project from the builder stage
-COPY --from=builder /app/target/*.jar app.jar
-
-# Copy test execution script
-COPY run_tests.sh /app/run_tests.sh
-
-# Give execution permissions
-RUN chmod +x /app/run_tests.sh
-
-# Set the entrypoint to execute the tests
-ENTRYPOINT ["/bin/bash", "/app/run_tests.sh"]
+# Run tests when container starts
+CMD ["mvn", "clean", "test"]
