@@ -1,5 +1,5 @@
 # Use an official Maven image to build the project
-FROM maven:3.8.5-openjdk-17 AS builder
+FROM maven:3.8.5-openjdk-19 AS builder
 
 # Set working directory
 WORKDIR /app
@@ -11,7 +11,7 @@ COPY . .
 RUN mvn clean install
 
 # Use a smaller JDK image for running tests
-FROM openjdk:17-jdk-slim
+FROM openjdk:19-jdk-slim
 
 # Set working directory
 WORKDIR /app
