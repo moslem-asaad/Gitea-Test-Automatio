@@ -1,5 +1,9 @@
-# Use an official Maven image to build the project
-FROM maven:3.8.5-openjdk-19 AS builder
+# Use an official Maven image
+FROM maven:3.8.5-openjdk-17 AS builder
+
+# Install OpenJDK 19 manually
+RUN apt-get update && apt-get install -y openjdk-19-jdk && \
+    update-alternatives --set java /usr/lib/jvm/java-19-openjdk-amd64/bin/java
 
 # Set working directory
 WORKDIR /app
